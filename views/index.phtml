@@ -4,20 +4,21 @@
 	    <meta charset="utf-8">
 	    <title>Projet commun</title>
 	    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
-        <link rel="stylesheet" href="style/jquery.bxslider.css" />
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="style/style.css"/>
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.bxslider.min.js"></script>
+        <link rel="stylesheet" href="style/bootstrap.min.css" />
+        <link rel="stylesheet" href="style/jquery.bxslider.css" />		
 	</head>
 	<body>
 		<?php require('apps/header.php'); ?>
 		<?php require('apps/'.$page.'.php'); ?>
 		<?php require('apps/footer.php'); ?>
 	</body>
+<<<<<<< HEAD
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script src="./scripts/jquery.bxslider.min.js"></script>
+	<script src="./js/jquery-2.1.4.min.js"></script>
+	<script src="./js/jquery.bxslider.min.js"></script>
 
 			<script> 
  
@@ -30,4 +31,13 @@
             
 	</script>
 
+=======
+	<script> 
+        $(function(){
+            $('.sliderTop').bxSlider({
+                mode : "fade"
+            });
+        })
+    </script>
+>>>>>>> a1178f11f6baa6ac9276d3fcb4c6b072739508d1
 </html>

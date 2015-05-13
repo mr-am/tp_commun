@@ -1,1 +1,7 @@
-<div><p>articles</p></div>
+<form method="post" action="traitement.php" enctype="multipart/form-data">
+	<label>Titre</label><input type="text" name="titre"/>			
+	<label>Contenu</label><textarea name="description"></textarea>
+	<label>Date de création</label><input type="date" name="date"/>
+	<input type="file" name="fichier" />
+	<input type="submit" value="Poster l'article"/>
+</form>
