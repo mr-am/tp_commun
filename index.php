@@ -8,7 +8,7 @@
 // $_GET['truc'] -> bidule
 // si $_GET['page'] = contact
 // charger le fichier apps/contact.php
-$page = '';
+$page = 'home';
 if (isset($_GET['page']))
 	$page = $_GET['page'];
 require('views/index.phtml');
