@@ -19,3 +19,11 @@ Home : header + carroussel + creation d'articles + footer
 Livre d'or : header + formulairelivredor + footer
 Contact : header + formulaire + chat + googlemap + footer
 CV : header + liste des liens illustré + footer
+
+Répartition des tâches :
+
+Nico (petit) : Header + Footer
+Nico (grand) : 
+Alex 	     : 
+Fred         : Structure globale
+Patrick      : Formulaires
