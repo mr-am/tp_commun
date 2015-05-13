@@ -22,8 +22,8 @@ CV : header + liste des liens illustré + footer
 
 Répartition des tâches :
 
-Nico (petit) : Header + Footer
-Nico (grand) : Caroussel
+Nico (petit) : Header + Footer + création d'articles
+Nico (grand) : page CV + googlemap
 Alex 	     : CSS
-Fred         : Structure globale
+Fred         : structure globale + Caroussel + dossier image
 Patrick      : Formulaires
