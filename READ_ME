@@ -22,8 +22,13 @@ CV : header + liste des liens illustré + footer
 
 Répartition des tâches :
 
-Nico (petit) : Header + Footer
-Nico (grand) : 
-Alex 	     : 
-Fred         : Structure globale
+Nico (petit) : Header + Footer + création d'articles
+Nico (grand) : page CV + googlemap
+Alex 	     : CSS
+Fred         : structure globale + Caroussel + dossier image
 Patrick      : Formulaires
+
+Pour ajouter des liens vers d'autres pages voici la procédure à faire pour les href :
+href="index.php?page=X"
+avec X le nom de la page que vous souhaitez mettre en lien.
+Exemple : si vous souhaitez mettre un lien vers la page contact.phtml, il faudra écrire href="index.php?page=contact"
