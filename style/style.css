@@ -1,7 +1,31 @@
+body {
+	padding: 70px 0;
+}
 .container-fluid {
 	border: 1px solid red;
 }
 
 .body {
 	border: 1px solid blue;
+}
+
+/*===================================
+	RESET SLIDER SETTINGS
+=====================================*/
+
+.bx-wrapper {
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+.bx-wrapper .bx-viewport {
+    border: none;
+	left: 0;
+	box-shadow: 0 0 0;
+	background-color: transparent;
+}
+
+.carousel {
+	margin: 0;
+	padding: 0;
 }
