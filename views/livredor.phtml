@@ -41,6 +41,15 @@ else
 
 foreach($_POST as $champ => $valeur) {  echo $champ . ": " . $valeur . "<br>";}
 
+$db = new PDO("mysql:dbname=tp_commun;host=127.0.0.1", 'root', 'troiswa');
+$requete = "SELECT guestbook.id, guestbook.title, guestbook.author_id, member.id FROM guestbook, member where guestbook.author_id = member.id";
+//$requete = "SELECT 'article'.'id', 'article'.'title', 'article'.'content', 'article'.'author_id', 'member'.'id', 'member'.'name'
+//FROM article, member"// where 'article'.'author_id' =  'member'.'id';"
+
+$tab = $db->query($requete)->fetchAll(PDO::FETCH_ASSOC);
+var_dump($tab);
+
+
  ?>
 
 
