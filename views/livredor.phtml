@@ -1,10 +1,56 @@
+<?php
+if (isset($_POST['nom'])) {
+    $nom = $_POST["nom"];
+}
+else
+{
+    $nom = "";
+    session_start(); 
+}
+
+if (isset($_POST['prenom'])) { $prenom = $_POST["prenom"]; }
+else { $prenom = ""; }
+
+if (isset($_POST['email'])) { $email = $_POST["email"]; }
+else { $email = ""; }
+
+if (isset($_POST['commentaire'])) { $commentaire = $_POST["commentaire"]; }
+else { $commentaire = ""; }
+
+if (isset($_POST['captcha'])) { $captcha = $_POST["captcha"]; }
+else { $captcha = ""; }
+
+/*if (isset($_POST['hidden'])) { $hidden = $_POST["hidden"]; }
+else { $hidden = ""; }*/
+
+    if (!isset($_POST['hidden']))  
+    {
+        $hidden = "";
+        ?>
+        <script language= "javascript ">$("#hidden").hide(); </script>
+        <?php
+    }
+else
+    {
+        ?>
+        <script language= "javascript ">$("#hidden").show(); </script>
+        <?php
+    }
+
+
+
+foreach($_POST as $champ => $valeur) {  echo $champ . ": " . $valeur . "<br>";}
+
+ ?>
+
+
+
 <!DOCTYPE html>
     <html>
         <head>
             <meta charset="UTF-8">
             <title>Livre d'or</title>
-            <?php session_start(); ?>
-        </head>
+            </head>
         <body>
 
          <div class="container-principal">  
@@ -21,19 +67,19 @@
 
             <div class="container">    
                 <label for="champNom">Nom : </label> 
-                <input type="text" name="nom"  id="champNom" placeholder="Veuillez renseigner votre nom *" maxlength="37" />
+                <input type="text" name="nom"  value="<?php echo $nom ?>" id="champNom" placeholder="Veuillez renseigner votre nom *" maxlength="37" />
                 <div class="clearfix"></div>
             </div>
 
             <div class="container">    
                 <label for="champPrenom">Prenom : </label> 
-                <input type="text" name="prenom"  id="champPrenom" placeholder="Veuillez renseigner votre prénom *" maxlength="37" />
+                <input type="text" name="prenom"  id="champPrenom" value="<?php echo $prenom ?>" placeholder="Veuillez renseigner votre prénom *" maxlength="37" />
                 <div class="clearfix"></div> 
             </div>
      
             <div class="container">    
                 <label for="champEmail">E-mail : </label> 
-                <input type="email" name="email"  id="champEmail" maxlength="37"   />
+                <input type="email" name="email"  value="<?php echo $email ?>" id="champEmail" maxlength="37"   />
                 <div class="clearfix"></div> 
             </div>
 
@@ -44,11 +90,12 @@
 
             <div class="container">              
                <label for="captcha">Recopiez le mot : "<?php echo captcha(); ?>"</label>
-               <input type="text" name="captcha" id="captcha" maxlength="37" /><br />
+               <input type="text" name="captcha" id="captcha" value="<?php echo $captcha ?>" maxlength="37" /><br />
            </div>
 
             <div class="container">    
-                <input type="hidden" id="hidden" name="hidden" value="" /><br />
+                <label for="hidden"></label><br/> 
+                <input type="text" id="hidden" name="hidden" visible = "false" value="<?php echo $hidden ?>"  /><br />
                 <div class="clearfix"></div> 
             </div>
 
@@ -62,7 +109,7 @@
 
             <div class="container">    
                 <label for="champCom">Commentaire : </label> 
-                <textarea name="commentaire" class="champCom" maxlength="300" placeholder="pas plus de 300 caractères" ></textarea>
+                <textarea name="commentaire" class="champCom" maxlength="300" placeholder="pas plus de 300 caractères" ><?php echo $commentaire ?></textarea>
                 <div class="clearfix"></div> 
             </div>
 
@@ -137,7 +184,10 @@
 
     </div>
 
+
     </html>
+
+
 
 <!--
 remarques :
