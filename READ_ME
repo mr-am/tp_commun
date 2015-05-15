@@ -1,3 +1,10 @@
+4h55 : bon je pense que le layout de base est OK, reste à faire le responsive et un peu de js pour faire une UX et UI un peu plus couillue ... je vais dormir un peu ...
+4h40 : ok pour le footer, mais la typo est merdique on voit rien ...
+4h30 : putain y a le footer qui merde à cause des 15px de bootstrap ... fait chier !
+4h05 : je fais pas le responsive, il faut qu'on voit le comment gérer le colonnage de chaque page ensemble
+4h00 : le layout de la home est presque ok, il suffira d'appliquer le modèle aux autres pages...
+3h42 : pratique de pusher sans devoir puller tout le temps !!
+
 Arborescence des fichiers
 
 index.php
