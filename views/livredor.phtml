@@ -1,1 +1,156 @@
-<div><p>Livre d'or</p></div>
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Livre d'or</title>
+            <?php session_start(); ?>
+        </head>
+        <body>
+
+         <div class="container-principal">  
+
+          <h1>Vous trouvez notre site génial? dites-le nous</h1> 
+
+
+         <section class="Identification">   
+
+
+            <h2 class="Title">Identification</h2>
+
+            <form action="verification.php" method="post">
+
+            <div class="container">    
+                <label for="champNom">Nom : </label> 
+                <input type="text" name="nom"  id="champNom" placeholder="Veuillez renseigner votre nom *" maxlength="37" />
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="container">    
+                <label for="champPrenom">Prenom : </label> 
+                <input type="text" name="prenom"  id="champPrenom" placeholder="Veuillez renseigner votre prénom *" maxlength="37" />
+                <div class="clearfix"></div> 
+            </div>
+     
+            <div class="container">    
+                <label for="champEmail">E-mail : </label> 
+                <input type="email" name="email"  id="champEmail" maxlength="37"   />
+                <div class="clearfix"></div> 
+            </div>
+
+
+                <?php require('../apps/captcha.php'); ?>
+
+
+
+            <div class="container">              
+               <label for="captcha">Recopiez le mot : "<?php echo captcha(); ?>"</label>
+               <input type="text" name="captcha" id="captcha" maxlength="37" /><br />
+           </div>
+
+            <div class="container">    
+                <input type="hidden" id="hidden" name="hidden" value="" /><br />
+                <div class="clearfix"></div> 
+            </div>
+
+
+        </section>
+
+        <section class="message">  
+
+            
+            <h2 class="Title">Votre commentaire</h2>
+
+            <div class="container">    
+                <label for="champCom">Commentaire : </label> 
+                <textarea name="commentaire" class="champCom" maxlength="300" placeholder="pas plus de 300 caractères" ></textarea>
+                <div class="clearfix"></div> 
+            </div>
+
+        </section>
+
+        <button type="submit">Envoyer</button>
+
+        </form>
+
+
+        <footer>
+            <style>
+
+            *{box-sizing:border-box;}
+
+            .clearfix{
+                clear: both;
+            }
+
+            .container-principal{
+                width: 1060px;
+                text-align: center;
+                margin-left: 100px;
+            }
+            .container{
+                width: 530px;
+                margin: 20px 0;
+            }
+
+            .Identification, .message {
+                float:left;
+            }
+
+            label{
+                    width: 180px;
+                    margin-right: 10px;
+                    float : left;
+                    text-align: right;
+            }
+
+            input, textarea{
+                    width: 340px;
+                    float : right;
+            }
+
+
+
+            h2{
+                margin-left: 190px;
+                padding: 0;
+                font-size: 15px;
+                /*border-bottom: 1px solid black;*/
+                width: 100%;
+                text-align: left;
+            }
+
+            button{
+                position:relative;
+                left:225px;
+                width: 80px;
+            }
+
+            .champCom{
+                border: 3px solid #cccccc;
+                padding: 5px;
+                height:110px;
+
+            }
+
+            </style>
+        </footer>
+
+    </div>
+
+    </html>
+
+<!--
+remarques :
+- maxlenght à 37 pour tous les champs de saisie (sauf textaerea à 300). taille de renseignement maximum :
+    on ne peux metre que 37 W. faudras être sur que cela marche pour tous les email
+- les champs nom, prénom ainsi que le commentaire est obligatoire. j'ai mis un required pour nom et prénom
+    pour le textarea, on gère cela dans le PHP
+
+
+
+
+
+
+-->
+
+
