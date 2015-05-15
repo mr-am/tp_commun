@@ -17,3 +17,23 @@
 		</ul>
 	</div>
 </div>
+
+<?php
+$tab = $db->query("SELECT * FROM article")->fetchAll(PDO::FETCH_ASSOC);
+//var_dump($tab);
+
+
+
+foreach ($tab as $row){ 
+echo "<div>";
+echo "<h1>";
+echo $row['title'];
+echo "</h1>";
+echo "<p>";
+echo $row['content'];
+echo "</p>";
+echo "</div>";
+
+}
+
+?>
