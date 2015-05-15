@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html>
         <head>
             <meta charset="UTF-8">
@@ -21,31 +21,34 @@
 
             <div class="container">    
                 <label for="champNom">Nom : </label> 
-                <input type="text" name="Nom"  id="champNom" placeholder="Veuillez renseigner votre nom *" required/>
-                <div class="clearfix"></div> 
+                <input type="text" name="nom"  id="champNom" placeholder="Veuillez renseigner votre nom *" maxlength="37" />
+                <div class="clearfix"></div>
             </div>
 
             <div class="container">    
                 <label for="champPrenom">Prenom : </label> 
-                <input type="text" name="Prenom"  id="champPrenom" placeholder="Veuillez renseigner votre prénom *" required />
+                <input type="text" name="prenom"  id="champPrenom" placeholder="Veuillez renseigner votre prénom *" maxlength="37" />
                 <div class="clearfix"></div> 
             </div>
      
             <div class="container">    
                 <label for="champEmail">E-mail : </label> 
-                <input type="text" name="Email"  id="champEmail"   />
+                <input type="email" name="email"  id="champEmail" maxlength="37"   />
                 <div class="clearfix"></div> 
             </div>
 
-            <?php require('captcha.php'); ?>
+
+                <?php require('captcha.php'); ?>
+
+
 
             <div class="container">              
                <label for="captcha">Recopiez le mot : "<?php echo captcha(); ?>"</label>
-               <input type="text" name="captcha" id="captcha" /><br />
+               <input type="text" name="captcha" id="captcha" maxlength="37" /><br />
            </div>
 
             <div class="container">    
-                <input type="hidden" id="hidden" name="hidden" /><br />
+                <input type="hidden" id="hidden" name="hidden" value="" /><br />
                 <div class="clearfix"></div> 
             </div>
 
@@ -59,7 +62,7 @@
 
             <div class="container">    
                 <label for="champCom">Commentaire : </label> 
-                <textarea name="commentaire" class="champCom" placeholder="pas plus de 300 caractères"></textarea>
+                <textarea name="commentaire" class="champCom" maxlength="300" placeholder="pas plus de 300 caractères" ></textarea>
                 <div class="clearfix"></div> 
             </div>
 
@@ -80,12 +83,12 @@
             }
 
             .container-principal{
-                width: 1000px;
+                width: 1060px;
                 text-align: center;
                 margin-left: 100px;
             }
             .container{
-                width: 500px;
+                width: 530px;
                 margin: 20px 0;
             }
 
@@ -94,7 +97,7 @@
             }
 
             label{
-                    width: 150px;
+                    width: 180px;
                     margin-right: 10px;
                     float : left;
                     text-align: right;
@@ -108,7 +111,7 @@
 
 
             h2{
-                margin-left: 170px;
+                margin-left: 190px;
                 padding: 0;
                 font-size: 15px;
                 /*border-bottom: 1px solid black;*/
@@ -118,14 +121,14 @@
 
             button{
                 position:relative;
-                left:208px;  
+                left:225px;
                 width: 80px;
             }
 
             .champCom{
                 border: 3px solid #cccccc;
                 padding: 5px;
-                height:70px;
+                height:110px;
 
             }
 
@@ -135,3 +138,19 @@
     </div>
 
     </html>
+
+<!--
+remarques :
+- maxlenght à 37 pour tous les champs de saisie (sauf textaerea à 300). taille de renseignement maximum :
+    on ne peux metre que 37 W. faudras être sur que cela marche pour tous les email
+- les champs nom, prénom ainsi que le commentaire est obligatoire. j'ai mis un required pour nom et prénom
+    pour le textarea, on gère cela dans le PHP
+
+
+
+
+
+
+-->
+
+
