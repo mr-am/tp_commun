@@ -1,0 +1,41 @@
+4h55 : bon je pense que le layout de base est OK, reste à faire le responsive et un peu de js pour faire une UX et UI un peu plus couillue ... je vais dormir un peu ...
+4h40 : ok pour le footer, mais la typo est merdique on voit rien ...
+4h30 : putain y a le footer qui merde à cause des 15px de bootstrap ... fait chier !
+4h05 : je fais pas le responsive, il faut qu'on voit le comment gérer le colonnage de chaque page ensemble
+4h00 : le layout de la home est presque ok, il suffira d'appliquer le modèle aux autres pages...
+3h42 : pratique de pusher sans devoir puller tout le temps !!
+
+Arborescence des fichiers
+
+index.php
+
+CONTROLLER / home.php , header.php , carroussel.php , articles.php ,
+livredor.php , formulairecontact.php , chat.php , googlemap.php , cv.php , footer.php , contact.php
+
+VIEWS / home.phtml , header.phtml , carroussel.phtml , articles.phtml ,
+livredor.phtml , formulairecontact.phtml , chat.phtml , googlemap.phtml , cv.phtml , footer.phtml , contact.phtml
+
+STYLES / style.css
+
+
+
+
+Arborescence des pages
+
+Home : header + carroussel + creation d'articles + footer
+Livre d'or : header + formulairelivredor + footer
+Contact : header + formulaire + chat + googlemap + footer
+CV : header + liste des liens illustré + footer
+
+Répartition des tâches :
+
+Nico (petit) : Header + Footer + création d'articles
+Nico (grand) : page CV + googlemap
+Alex 	     : CSS
+Fred         : structure globale + Caroussel + dossier image
+Patrick      : Formulaires
+
+Pour ajouter des liens vers d'autres pages voici la procédure à faire pour les href :
+href="index.php?page=X"
+avec X le nom de la page que vous souhaitez mettre en lien.
+Exemple : si vous souhaitez mettre un lien vers la page contact.phtml, il faudra écrire href="index.php?page=contact"
