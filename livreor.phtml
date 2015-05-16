@@ -1,0 +1,137 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Livre d'or</title>
+            <?php session_start(); ?>
+        </head>
+        <body>
+
+         <div class="container-principal">  
+
+          <h1>Vous trouvez notre site génial? dites-le nous</h1> 
+
+
+         <section class="Identification">   
+
+
+            <h2 class="Title">Identification</h2>
+
+            <form action="verification.php" method="post">
+
+            <div class="container">    
+                <label for="champNom">Nom : </label> 
+                <input type="text" name="Nom"  id="champNom" placeholder="Veuillez renseigner votre nom *" required/>
+                <div class="clearfix"></div> 
+            </div>
+
+            <div class="container">    
+                <label for="champPrenom">Prenom : </label> 
+                <input type="text" name="Prenom"  id="champPrenom" placeholder="Veuillez renseigner votre prénom *" required />
+                <div class="clearfix"></div> 
+            </div>
+     
+            <div class="container">    
+                <label for="champEmail">E-mail : </label> 
+                <input type="text" name="Email"  id="champEmail"   />
+                <div class="clearfix"></div> 
+            </div>
+
+            <?php require('captcha.php'); ?>
+
+            <div class="container">              
+               <label for="captcha">Recopiez le mot : "<?php echo captcha(); ?>"</label>
+               <input type="text" name="captcha" id="captcha" /><br />
+           </div>
+
+            <div class="container">    
+                <input type="hidden" id="hidden" name="hidden" /><br />
+                <div class="clearfix"></div> 
+            </div>
+
+
+        </section>
+
+        <section class="message">  
+
+            
+            <h2 class="Title">Votre commentaire</h2>
+
+            <div class="container">    
+                <label for="champCom">Commentaire : </label> 
+                <textarea name="commentaire" class="champCom" placeholder="pas plus de 300 caractères"></textarea>
+                <div class="clearfix"></div> 
+            </div>
+
+        </section>
+
+        <button type="submit">Envoyer</button>
+
+        </form>
+
+
+        <footer>
+            <style>
+
+            *{box-sizing:border-box;}
+
+            .clearfix{
+                clear: both;
+            }
+
+            .container-principal{
+                width: 1000px;
+                text-align: center;
+                margin-left: 100px;
+            }
+            .container{
+                width: 500px;
+                margin: 20px 0;
+            }
+
+            .Identification, .message {
+                float:left;
+            }
+
+            label{
+                    width: 150px;
+                    margin-right: 10px;
+                    float : left;
+                    text-align: right;
+            }
+
+            input, textarea{
+                    width: 340px;
+                    float : right;
+            }
+
+
+
+            h2{
+                margin-left: 170px;
+                padding: 0;
+                font-size: 15px;
+                /*border-bottom: 1px solid black;*/
+                width: 100%;
+                text-align: left;
+            }
+
+            button{
+                position:relative;
+                left:208px;  
+                width: 80px;
+            }
+
+            .champCom{
+                border: 3px solid #cccccc;
+                padding: 5px;
+                height:70px;
+
+            }
+
+            </style>
+        </footer>
+
+    </div>
+
+    </html>
