@@ -1,4 +1,5 @@
 <?php
+$db = new PDO("mysql:dbname=tp_commun;host=127.0.0.1", 'root', 'troiswa');
 // index.php
 // http://localhost/Site%20perso/PHTML/index.php?page=contact
 // $_GET['page'] -> contact
