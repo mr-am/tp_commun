@@ -1,0 +1,116 @@
+<h1>Veuillez renseigner les champs suivant pour vous enregistrer<br>Les champs avec des astérisques sont obligatoires</h1> 
+
+            <form action="index.php?page=register" method="post">
+
+
+                <h2 class="Title">Identification</h2>
+
+                <div class="row">
+
+                <div class="col-md-12">
+                    <form action="../apps/verification.php" method="post" class="form-horizontal">
+                        <!-- login (pseudo). Obligatoire -->
+                        <div class="form-group">
+                            <label for="champLogin" class="col-sm-2 control-label">Login : </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="login"  value="<?php echo $login ?>" id="champLogin" placeholder="*" maxlength="32" class="form-control">
+                            </div>
+                        </div>   
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="champPassword" class="col-sm-2 control-label">Password : </label>
+                            <div class="col-sm-10">
+                                <input type="password" name="password"  id="champPassword" value="<?php echo $Password ?>" placeholder="*" maxlength="32" class="form-control">
+                            </div>
+                         </div>
+
+                        <!-- civilité -->  
+                        <div class="form-group">
+                            <label for="civility" class="col-sm-2 control-label">Civilité : </label>
+                            <div class="col-sm-10">
+                                <input type="radio" name="civility" id="champMonsieurs" value="oui"/>
+                                <label for="champMonsieurs">Monsieur</label>
+                                <input type="radio" name="civility" id="champMadame" value="non" />
+                                <label for="champMadame">Madame</label>
+                                <input type="radio" name="civility" id="champMademoiselle" value="non" />
+                                <label for="champMademoiselle">Mademoiselle</label>                                
+                            </div>
+                        </div>
+
+                        <!-- Nom -->
+                        <div class="form-group">
+                            <label for="champFirstname" class="col-sm-2 control-label">Nom : </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="firstname"  value="<?php echo $firstname ?>" id="champFirstname" placeholder="*" maxlength="32" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <!-- Prénom -->
+                        <div class="form-group">
+                            <label for="lastName" class="col-sm-2 control-label">Prénom : </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="lastname"  id="champLastName" value="<?php echo $lastname ?>" placeholder="*" maxlength="32" class="form-control">
+                            </div>
+                         </div>
+
+                        <!-- email -->                         
+                        <div class="form-group">
+                            <label for="champEmail" class="col-sm-2 control-label">Email : </label>
+                            <div class="col-sm-10">
+                                <input type="email" name="email"  value="<?php echo $email ?>" id="champEmail" maxlength="64" placeholder="*" class="form-control">
+                            </div>
+                         </div>
+
+                        <!-- street -->                         
+                        <div class="form-group">
+                            <label for="champStreet" class="col-sm-2 control-label">rue : </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="street"  value="<?php echo $street ?>" id="champStreet" maxlength="64" class="form-control">
+                            </div>
+                         </div>
+
+                        <!-- zipcode -->                         
+                        <div class="form-group">
+                            <label for="champZipcode" class="col-sm-2 control-label">code postal : </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="zipcode"  value="<?php echo $zipcode ?>" id="champZipcode" maxlength="16" class="form-control">
+                            </div>
+                         </div>
+
+                        <!-- City -->
+                        <div class="form-group">
+                            <label for="champCity" class="col-sm-2 control-label">ville : </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="city"  id="champCity" value="<?php echo $city ?>" maxlength="32" class="form-control">
+                            </div>
+                         </div>
+
+                        <!-- Country -->
+                        <div class="form-group">
+                            <label for="champCountry" class="col-sm-2 control-label">pays : </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="country"  id="champCountry" value="<?php echo $country ?>" maxlength="32" class="form-control">
+                            </div>
+                         </div>
+
+                        <!-- phone -->                         
+                        <div class="form-group">
+                            <label for="champPhone" class="col-sm-2 control-label">téléphone : </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="phone"  value="<?php echo $phone ?>" id="champPhone" maxlength="16" class="form-control">
+                            </div>
+                         </div>
+
+                        <div class="form-group">              
+                            <label for="captcha" class="col-sm-2 control-label">Recopiez le mot : "<?php echo captcha(); ?>"</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="captcha" id="captcha" value="<?php echo $captcha ?>" maxlength="37" class="form-control"/><br />
+                            </div>
+                        </div>
+
+                        <button type="submit">Envoyer</button>
+
+                    </form>    
+
+                </div>

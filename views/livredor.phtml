@@ -22,7 +22,7 @@ else { $captcha = ""; }
 
 /*if (isset($_POST['hidden'])) { $hidden = $_POST["hidden"]; }
 else { $hidden = ""; }*/
-    if (isset($_POST['validation']))
+/*    if (isset($_POST['validation']))
     {
         $hidden = "";
         ?>
@@ -35,7 +35,7 @@ else
         <script language="javascript">$("#hidden").hide(); </script>
         <?php
     }
-
+*/
 
 
 foreach($_POST as $champ => $valeur) {  echo $champ . ": " . $valeur . "<br>";}
@@ -94,20 +94,10 @@ var_dump($tab);
                             </div>
                          </div>
 
-                         <?php require('./apps/captcha.php'); ?>
-
-
-
                         <div class="form-group">              
                             <label for="captcha" class="col-sm-2 control-label">Recopiez le mot : "<?php echo captcha(); ?>"</label>
                             <div class="col-sm-10">
                                 <input type="text" name="captcha" id="captcha" value="<?php echo $captcha ?>" maxlength="37" class="form-control"/><br />
-                            </div>
-                        </div>
-                        <div class="form-group">              
-                            <label for="hidden" class="col-sm-2 control-label"></label>
-                            <div class="col-sm-10">
-                                <input type="text" id="hidden" name="hidden" visible = "false" value="<?php echo $hidden ?>" class="form-control"/><br />
                             </div>
                         </div>
                     </form>    

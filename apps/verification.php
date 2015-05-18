@@ -1,6 +1,8 @@
 <?php
  /*session_start();*/
 
+ 
+
 // booléen de vérif
 $champsOK = true;
 
