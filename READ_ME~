@@ -1,0 +1,21 @@
+Arborescence des fichiers
+
+index.php
+
+CONTROLLER / home.php , header.php , carroussel.php , articles.php ,
+livredor.php , formulairecontact.php , chat.php , googlemap.php , cv.php , footer.php , contact.php
+
+VIEWS / home.phtml , header.phtml , carroussel.phtml , articles.phtml ,
+livredor.phtml , formulairecontact.phtml , chat.phtml , googlemap.phtml , cv.phtml , footer.phtml , contact.phtml
+
+STYLES / style.css
+
+
+
+
+Arborescence des pages
+
+Home : header + carroussel + creation d'articles + footer
+Livre d'or : header + formulairelivredor + footer
+Contact : header + formulaire + chat + googlemap + footer
+CV : header + liste des liens illustré + footer
