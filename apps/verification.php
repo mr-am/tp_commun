@@ -80,7 +80,7 @@ if ($champsOK == true) { // tous les champs obligatoires sont renseignés
     // si il y a des champs au mauvais format
     if (sizeof($badFormat) > 0) {
         echo "certains champs contiennent des données invalides. veuillez ressaisir les champs : <br>";
-        foreach ($badFormat as $valeur3) {
+        foreach ($badFormat as $valeur3) {// Faire un foreach pour parcourir un tableau ordonnée est 800 fois plus lent : http://localhost/benchmark/loop.php
             echo "{$labels[$valeur3]}<br>";
         }
         $champsOK = false;
