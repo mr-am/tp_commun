@@ -10,14 +10,16 @@
         <link rel="stylesheet" href="style/bootstrap.min.css" />
         <link rel="stylesheet" href="style/jquery.bxslider.css" />
         <link rel="stylesheet" href="style/style.css" />
+        <link rel="stylesheet" type="text/css" href="style/styletchat.css">
+		<script src="chat.js"></script>
 	</head>
 	<body>
 		<?php require('apps/header.php'); ?>
+		<?php require('apps/tchat.php'); ?>
 		<?php require('apps/'.$page.'.php'); ?>
 		<?php require('apps/footer.php'); ?>
 	</body>
 	<script> 
-
         $(function(){
             $('.bxslider').bxSlider({
                 mode : "fade",
