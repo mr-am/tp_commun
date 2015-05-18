@@ -22,18 +22,17 @@ else { $captcha = ""; }
 
 /*if (isset($_POST['hidden'])) { $hidden = $_POST["hidden"]; }
 else { $hidden = ""; }*/
-
-    if (!isset($_POST['hidden']))  
+    if (isset($_POST['validation']))
     {
         $hidden = "";
         ?>
-        <script language= "javascript ">$("#hidden").hide(); </script>
+        <script language="javascript">$("#hidden").show(); </script>
         <?php
     }
 else
     {
         ?>
-        <script language= "javascript ">$("#hidden").show(); </script>
+        <script language="javascript">$("#hidden").hide(); </script>
         <?php
     }
 
@@ -42,7 +41,10 @@ else
 foreach($_POST as $champ => $valeur) {  echo $champ . ": " . $valeur . "<br>";}
 
 $db = new PDO("mysql:dbname=tp_commun;host=127.0.0.1", 'root', 'troiswa');
-$requete = "SELECT guestbook.id, guestbook.title, guestbook.author_id, member.id FROM guestbook, member where guestbook.author_id = member.id";
+$requete = "SELECT guestbook.id, guestbook.title, guestbook.author_id, member.id, member.firstname, member.lastname 
+            FROM  guestbook, member 
+            where guestbook.author_id = member.id
+            and   guestbook.title = 'encore un titre'";
 //$requete = "SELECT 'article'.'id', 'article'.'title', 'article'.'content', 'article'.'author_id', 'member'.'id', 'member'.'name'
 //FROM article, member"// where 'article'.'author_id' =  'member'.'id';"
 
@@ -61,7 +63,11 @@ var_dump($tab);
 
 
 
+
                 <h1>Vous trouvez notre site génial? dites-le nous</h1> 
+
+            <form action="index.php?page=livredor" method="post">
+
 
                 <h2 class="Title">Identification</h2>
 
@@ -89,6 +95,9 @@ var_dump($tab);
                          </div>
 
                          <?php require('./apps/captcha.php'); ?>
+
+                <?php require('apps/captcha.php'); ?>
+
 
                         <div class="form-group">              
                             <label for="captcha" class="col-sm-2 control-label">Recopiez le mot : "<?php echo captcha(); ?>"</label>
@@ -124,66 +133,6 @@ var_dump($tab);
 
 
 
-
-            <!--<style>
-
-            *{box-sizing:border-box;}
-
-            .clearfix{
-                clear: both;
-            }
-
-            .container-principal{
-                width: 1060px;
-                text-align: center;
-                margin-left: 100px;
-            }
-            .container{
-                width: 530px;
-                margin: 20px 0;
-            }
-
-            .Identification, .message {
-                float:left;
-            }
-
-            label{
-                    width: 180px;
-                    margin-right: 10px;
-                    float : left;
-                    text-align: right;
-            }
-
-            input, textarea{
-                    width: 340px;
-                    float : right;
-            }
-
-
-
-            h2{
-                margin-left: 190px;
-                padding: 0;
-                font-size: 15px;
-                /*border-bottom: 1px solid black;*/
-                width: 100%;
-                text-align: left;
-            }
-
-            button{
-                position:relative;
-                left:225px;
-                width: 80px;
-            }
-
-            .champCom{
-                border: 3px solid #cccccc;
-                padding: 5px;
-                height:110px;
-
-            }
-
-            </style>-->
 
 
 
