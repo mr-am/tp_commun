@@ -57,7 +57,7 @@ if ($champsOK == true) { // tous les champs obligatoires sont renseignés
 
     // vérif si le champs prénom ne contient que des lettres, tiret, apostrophes et espaces
     if (isset($_POST['prenom'])) {
-        if (!preg_match("/^[A-Za-z' -]{1,37}$/", $_POST['prenom'])) {
+        if (!preg_match("/^[A-Za-z' -]{1,37}$/", $_POST['prenom'])) {// Faire un foreach pour parcourir un tableau ordonnée est 800 fois plus lent : http://localhost/benchmark/loop.php
             //echo "le champ nom comporte des caractères invalides";
             $badFormat[] = "prenom";
         }
