@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 18 Mai 2015 à 14:29
+-- Généré le: Lun 18 Mai 2015 à 14:43
 -- Version du serveur: 5.5.41-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.7
 
@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL,
   `author_id` int(11) NOT NULL,
   `email` varchar(64) COLLATE utf8_bin NOT NULL,
+  `title` varchar(64) COLLATE utf8_bin NOT NULL,
   `content` varchar(512) COLLATE utf8_bin NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
