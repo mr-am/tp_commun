@@ -34,14 +34,14 @@ else { $login = ""; }
 if (isset($_POST['password'])) { $password = $_POST["password"]; }
 else { $password = ""; } 
 
-if (isset($_POST['choixCivilite'])) { $choixCivilite = $_POST["choixCivilite"]; }
-else { $choixCivilite = ""; }
+if (isset($_POST['civility'])) { $civility = $_POST["civility"]; }
+else { $civility = ""; }
 
-if (isset($_POST['prenom'])) { $prenom = $_POST["prenom"]; }
-else { $prenom = ""; } 
+if (isset($_POST['firstname'])) { $firstname = $_POST["firstname"]; }
+else { $firstname = ""; } 
 
-if (isset($_POST['nom'])) { $nom = $_POST["nom"]; }
-else { $nom = ""; } 
+if (isset($_POST['lastname'])) { $lastname = $_POST["lastname"]; }
+else { $lastname = ""; } 
 
 if (isset($_POST['email'])) { $email = $_POST["email"]; }
 else { $email = ""; }
@@ -118,59 +118,57 @@ if ($champsOK == true)
 {
 
     // vérif si le champs login ne contient que des lettres et des chiffres
-        if (!preg_match("/^[A-Za-z0-9]{1,32}$/", $_POST['login'])) {
+        if (!preg_match("/^[A-Za-z0-9]{1,32}$/", $login )) {
             $badFormat[] = "login";
         }
-    }
 
-    // pas de vérfif pour le password, ni l'email
+    // pas de vérif pour le password, ni l'email, ni la civilité
 
     // vérif si le champs prénom ne contient que des lettres, tiret, apostrophes et espaces
     if (isset($_POST['nom'])) {
-        if (!preg_match("/^[A-Za-z' -]{1,32}$/", $_POST['nom'])) {
+        if (!preg_match("/^[A-Za-z' -]{1,32}$/", $nom )) {
             $badFormat[] = "nom";
         }
     }
 
     // vérif si le champs prénom ne contient que des lettres, tiret, apostrophes et espaces
     if (isset($_POST['prenom'])) {
-        if (!preg_match("/^[A-Za-z' -]{1,32}$/", $_POST['prenom'])) {
+        if (!preg_match("/^[A-Za-z' -]{1,32}$/", $prenom )) {
             $badFormat[] = "prenom";
         }
     }
 
     // vérif si le champs street ne contient que des lettres, des chiffres, tiret, apostrophes et espaces
     if (isset($_POST['street'])) {
-        if (!preg_match("/^[A-Za-z0-9' -]{1,64}$/", $_POST['street'])) {
+        if (!preg_match("/^[A-Za-z0-9' -]{1,64}$/", $street )) {
             $badFormat[] = "street";
         }
     }
 
         // vérif si le champs zipcode ne contient que des chiffres et 5 au max
     if (isset($_POST['zipcode'])) {
-        if ((length($_POST['zipcode']) > 5) || (!is_nan($_POST['zipcode']) ))
-        {
+        if ((strlen($zipcode) > 5)) { //|| (!is_nan($zipcode) )) {
             $badFormat[] = "zipcode";
         }
     }
 
     // vérif si le champs city ne contient que des lettres, tiret, apostrophes et espaces
     if (isset($_POST['city'])) {
-        if (!preg_match("/^[A-Za-z' -]{1,32}$/", $_POST['city'])) {
+        if (!preg_match("/^[A-Za-z' -]{1,32}$/", $city )) {
             $badFormat[] = "city";
         }
     }
 
     // vérif si le champs country ne contient que des lettres, tiret, apostrophes et espaces
     if (isset($_POST['country'])) {
-        if (!preg_match("/^[A-Za-z' -]{1,32}$/", $_POST['country'])) {
+        if (!preg_match("/^[A-Za-z' -]{1,32}$/", $country )) {
             $badFormat[] = "country";
         }
     }
 
     // vérif si le champs phone ne contient que des chiffres, des espaces, des points et des tirets
     if (isset($_POST['phone'])) {
-        if (!preg_match("/^[0-9. -]{1,20$/", $_POST['phone'])) {
+        if (!preg_match("/^[0-9. -]{1,20}$/", $phone )) {
             $badFormat[] = "phone";
         }
     }
@@ -188,23 +186,71 @@ if ($champsOK == true)
 }
 
 /*** verif 3 : captcha ***/
-if ($champsOK == true) {
+/*if ($champsOK == true) {
     if (isset($_POST['captcha'])) {
         if ($_POST['captcha'] !== $_SESSION['captcha']) {
             $champsOK = false;
             echo "captcha erroné<br>";
         }
     }
-}
+}*/
 
 /*** formattage 1 : trim et htmlspecialchars ***/
+if ($champsOK == true) {
 
-$login = trim(htmlspecialchars($_POST['login'] ));
+    $login = trim(htmlspecialchars($login));
+    $password = trim(htmlspecialchars($password));
+    $civility = trim(htmlspecialchars($civility)); 
+    $firstname = trim(htmlspecialchars($firstname));
+    $lastname = trim(htmlspecialchars($lastname)); 
+    $street = trim(htmlspecialchars($street));
+    $zipcode = trim(htmlspecialchars($zipcode));
+    $city = trim(htmlspecialchars($city)); 
+    $country = trim(htmlspecialchars($country));
+    $phone = trim(htmlspecialchars($phone)); 
 
-/*** formattage 2 pdo:quote : virer les '***/
+
+/*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
+$request = 'INSERT INTO member(pseudo, password, civility, firstname, lastname, street, zipcode, city, country, phone, time_register) 
+            VALUES('. $db->quote($login)     .', 
+                   '. $db->quote($password)  .', 
+                   '. $db->quote($civility)  .', 
+                   '. $db->quote($firstname) .', 
+                   '. $db->quote($lastname)  .', 
+                   '. $db->quote($street)    .', 
+                   '. $db->quote($zipcode)   .', 
+                   '. $db->quote($city)      .', 
+                   '. $db->quote($country)   .', 
+                   '. $db->quote($phone)     .', 
+                   '. NOW() .')';
+// faire un strtotime quand on récupère la donnée
+
+$db->exec($request);
+
+/*$db->exec('INSERT INTO member(pseudo, password, civility, firstname, lastname, street, zipcode, city, country, phone, time_register) 
+            VALUES("moioiuouy", 
+                   "monmdp",
+                   "M",
+                   "myfirstname",
+                   "mylastname",
+                   "mystreet",
+                   10000, 
+                   "strasbourg",
+                   "france",
+                   "0102030405",
+                   NOW() 
+                   )');*/
+
+/*** à tester ***/
+// 1) les différentes zones à vide
+// 2) les différentes format autorisés
+// 3) le captcha
+// 4) les champs avec des espaces au début ou à la fin
+// 5) les champs non controlé avec des bizarreries
+
 
 /***  insertion en base de données ***/
 
-
+}
 require('./views/register.phtml');
 ?>
