@@ -12,7 +12,8 @@
 
 <?php
 	// permettra de créer l'utilisateur lors de la validation du formulaire
-	if(isset($_POST['login']) AND !preg_match("#^[-. ]+$#", $_POST['login'])) {
+	if(isset($_POST['login']) AND !preg_match("#^[-. ]+$#", $_POST['login'])) 
+	{
 		/* On crée la variable login qui prend la valeur POST envoyée
 		car on va l'utiliser plusieurs fois */
 		$login = $_POST['login'];
@@ -27,7 +28,8 @@
 		$count=$query->rowCount();
 					
 		// Si ce nombre est nul, alors on crée le compte, sinon on le connecte simplement
-		if($count == 0) {			
+		if($count == 0)
+		{			
 			// Création du compte
 			$insert = $db->prepare('
 				INSERT INTO chat_accounts (account_id, account_login, account_pass) 
@@ -45,24 +47,27 @@
 			// On crée une session time qui prend la valeur de la date de connexion
 			$_SESSION['time'] = time();
 			$_SESSION['login'] = $login;
-		} else {
+		}
+		else
+		{
 			$data = $query->fetch();	
 						
-			if($data['account_pass'] == md5($pass)) {			
+			if($data['account_pass'] == md5($pass))
+			{			
 				$_SESSION['id'] = $data['account_id'];
 				// On crée une session time qui prend la valeur de la date de connexion
 				$_SESSION['time'] = time();
 				$_SESSION['login'] = $data['account_login'];
 			}
-		}
-					
+		}		
 		// On termine la requête
 		$query->closeCursor();
 	}
 
 	/* Si l'utilisateur n'est pas connecté, 
 	d'où le ! devant la fonction, alors on affiche le formulaire */
-	if(!user_verified()) {
+	if(!user_verified())
+	{
 ?>
 
 <div class="unlog">
@@ -78,7 +83,9 @@
 </div>
 
 <?php
-	} else {
+	}
+	else
+	{
 ?>
 
 <table class="post_message"><tr>	
@@ -94,14 +101,12 @@
 			</td>
 		</tr>
 	</table>
+
 <?php
 	}
 ?>
+
 </div>
-				</select>
-			</td>
-		</tr>
-	</table>
 	<table class="chat">
 		<tr>        
 		    <!-- zone des messages -->

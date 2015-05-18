@@ -1,3 +1,3 @@
 <?php
-require('./views/tchat.phtml');
+	require('./views/tchat.phtml');
 ?>
