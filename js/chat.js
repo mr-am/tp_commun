@@ -15,7 +15,7 @@ var scrollBar = false;
 function getMessages()
 {
 	// On lance la requête ajax
-	$.getJSON('phpscripts/get-message.php?dateConnexion='+$("#dateConnexion").val(), function(data)
+	$.getJSON('apps/get-message.php?dateConnexion='+$("#dateConnexion").val(), function(data)
 	{
 			/* On vérifie que error vaut 0, ce
 			qui signifie qu'il n'y aucune erreur */
@@ -81,7 +81,7 @@ function postMessage()
     $.ajax(
     {
         type: "POST",
-        url: "phpscripts/post-message.php",
+        url: "apps/post-message.php",
         data: "message="+message,
         success: function(msg)
         {
@@ -106,8 +106,6 @@ function postMessage()
     });
 }
 
-
-
 // Au chargement de la page, on effectue cette fonction afin que le chat s'actualise toutes les X secondes
 $(document).ready(function()
 {
@@ -131,7 +129,7 @@ $(document).ready(function()
 function getOnlineUsers()
 {
 	// On lance la requête ajax
-	$.getJSON('phpscripts/get-online.php', function(data)
+	$.getJSON('apps/get-online.php', function(data)
 	{
 		// Si data['error'] renvoi 0, alors ça veut dire que personne n'est en ligne
 		// ce qui n'est pas normal d'ailleurs
@@ -192,7 +190,7 @@ function setStatus(status) {
 	$.ajax(
 	{
 		type: "POST",
-		url: "phpscripts/set-status.php",
+		url: "apps/set-status.php",
 		data: "status="+status.value,
 		success: function(msg)
 		{
