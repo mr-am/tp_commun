@@ -1,8 +1,8 @@
 <?php
 
 $table_name = "member";
-$next_program = $_SERVER['HTTP_REFERER'];
-$redirection = false; // patpack. récup le program d'origine avec un champ caché pour savoir ou l'envoyer
+//$next_program = $_SERVER['HTTP_REFERER'];
+$redirection2 = false; // patpack. récup le program d'origine avec un champ caché pour savoir ou l'envoyer
 
 $login = "";
 $password = "";
@@ -101,14 +101,16 @@ if (isset($_POST['validation'])) {
 			       $_SESSION["id"] = $myid;
 
 
-			       	if(isset($_POST['redirect'])){
-				        header('location: ?page=' . $_POST['redirect']); // avant appel à du html patpack a voir
-				        $redirection = true;
-			       		
-			       	}
+			       	/*if(isset($_GET['redirect'])){
+			       		echo "toto1";
+				        header('location: ?page=' . $_GET['redirect']); // avant appel à du html patpack a voir */
+				        $redirection2 = true;
+				        require('apps/livredor.php');
+				        
+		       	}
 			        // echo "$next_program";
 			        //require('apps/livredor.php');
-		        }   
+		           
 		         else 
 	         	{
 	         		echo "mot de passe inexact"; 
@@ -119,7 +121,7 @@ if (isset($_POST['validation'])) {
 	}
 
 }
-if ($redirection == false) {
+if ($redirection2 == false) {
 	require('./views/login.phtml');
 }
 ?>

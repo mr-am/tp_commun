@@ -64,18 +64,19 @@ else { $phone = ""; }
 if (isset($_POST['captcha'])) { $captcha = $_POST["captcha"]; }
 else { $captcha = ""; }
 
-
 // booléen de vérif
 $champsOK = true;
 $captchaOK = true;
 
-$hidden = "";
+$table_name = "member";
 
 // tableau des champs obligatoires vides
 $tabVide = array();
 
 // tableau des champs incorrects
 $badFormat = array();
+
+if (isset($_POST['validation'])) { 
 
 // tableau des champs à controler
 $labels = array("login" => "login",
@@ -91,12 +92,10 @@ $labels = array("login" => "login",
                 "phone" => "phone",                
                 "captcha" => "captcha");
 
-
-
 /*** verif 1 : champs vid
 es ***/
 foreach($_POST as $champ => $valeur) {
-     echo $champ . ": " . $valeur . "fin<br>";
+     echo $champ . ": " . $valeur . "<br>";
 
     // vérification des champs vide
     // Tous les champs obligatoires vides alimenteront le tableau $tabVide
@@ -193,13 +192,15 @@ if ($champsOK == true)
     if ($champsOK == true) {
         if (isset($_POST['captcha'])) {
             if ($_POST['captcha'] !== $_SESSION['captcha']) {
-                $champsOK = false;
+                //$champsOK = false;
+                $captchaOK = false;
                 echo "captcha erroné<br>";
-                echo $_POST['captcha']."<br>";
-                echo $_SESSION['captcha']."<br>";
+                //echo $_POST['captcha']."<br>";
+                //echo $_SESSION['captcha']."<br>";
             }
         }
     }
+
 
     if ($captchaOK == false) {
         $champsOK = false;
@@ -221,23 +222,55 @@ if ($champsOK == true) {
     $country = trim($country);
     $phone = trim($phone); 
 
+/*** verif doublon ***/ 
 
-/*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
-$request = 'INSERT INTO member(pseudo, password, civility, firstname, lastname, street, zipcode, city, country, phone, time_register) 
-            VALUES('. $db->quote($login)     .', 
-                   '. $db->quote($password)  .', 
-                   '. $db->quote($civility)  .', 
-                   '. $db->quote($firstname) .', 
-                   '. $db->quote($lastname)  .', 
-                   '. $db->quote($street)    .', 
-                   '. $db->quote($zipcode)   .', 
-                   '. $db->quote($city)      .', 
-                   '. $db->quote($country)   .', 
-                   '. $db->quote($phone)     .', 
-                    NOW() )';
-// faire un strtotime quand on récupère la donnée
+    $request2 = "SELECT pseudo as mylogin FROM $table_name WHERE pseudo = '$login'";
 
-$db->exec($request);
+     
+    // mettre le résultat de la requête dans une variable de façon à pouvoir compter le nombre de ligne 
+    // => un login dois être unique
+    if ($result = $db->query($request2)) {
+
+        if ($result->rowCount()  == 0) 
+        { 
+            echo "OK"; 
+        }
+        else 
+        { 
+            echo "login déjà existant, veuillez en choisir un autre"; 
+            $champsOK = false;
+        } 
+    }
+    else
+    { 
+        echo "echec de la requête" . $request2 ; 
+    } 
+
+    if ($champsOK == true) {
+
+
+    /*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
+    $request = 'INSERT INTO member(pseudo, password, civility, firstname, lastname, email, street, zipcode, city, country, phone, time_register) 
+                VALUES('. $db->quote($login)     .', 
+                       '. $db->quote($password)  .', 
+                       '. $db->quote($civility)  .', 
+                       '. $db->quote($firstname) .', 
+                       '. $db->quote($lastname)  .', 
+                       '. $db->quote($email)     .',                       
+                       '. $db->quote($street)    .', 
+                       '. $db->quote($zipcode)   .', 
+                       '. $db->quote($city)      .', 
+                       '. $db->quote($country)   .', 
+                       '. $db->quote($phone)     .', 
+                        NOW() )';
+    // faire un strtotime quand on récupère la donnée
+
+    $db->exec($request);
+
+    echo"vous avez bien été enregistré";
+
+    }
+}
 
 /*$db->exec('INSERT INTO member(pseudo, password, civility, firstname, lastname, street, zipcode, city, country, phone, time_register) 
             VALUES("moioiuouy", 

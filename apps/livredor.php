@@ -26,6 +26,8 @@ function captcha()
     return $mot;
 }
 
+$redirection = false;
+
 // si il est loggué on récupère son author_id, sinon on l'envoi sur la page de login
 $myAuthorId = "";
 if (isset($_SESSION["id"])) {
@@ -44,7 +46,6 @@ $login = "";
 $commentaire = "";
 $captcha = "";
 $table_name = "member";
-$redirection = false;
 if (isset($_POST['login'])) { $login = $_POST["login"];}
 if (isset($_POST['commentaire'])) { $commentaire = $_POST["commentaire"];}
 if (isset($_POST['captcha'])) { $captcha = $_POST["captcha"];}
@@ -149,7 +150,7 @@ if (isset($_POST['validationLivredor'])) { // patpack. A rajouter sur register.p
             /*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
             $request = 'INSERT INTO guestbook(content, author_id, time)
                 VALUES('. $db->quote($commentaire) .',
-                       '. $db->quote($myAuthorId)       .',                
+                       '. $db->quote($myAuthorId)  .',                
                         NOW() )';
 
             $db->exec($request);
