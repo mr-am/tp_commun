@@ -91,6 +91,11 @@ if (isset($_POST['validation'])) {
 	    		// ou un fetchall pour les avoir toutes	
     			$resultExploitable = $result->fetch();
     			$mypassword = $resultExploitable["mypassword"];
+    			echo $mypassword." ".md5($password)."<br>";
+    			echo "$password : " . $password . "<br>";
+    			echo "md5($password) : " . md5($password) . "<br>";
+    			echo "$mypassword : " . $mypassword . "<br>";
+    			echo "md5($mypassword) : " . md5($mypassword) . "<br>";    			
 
    		        /*$requestPassword = "SELECT pseudo FROM $table_name WHERE pseudo = '$login' AND password = '$password' ";*/
 		        if ( $mypassword == md5($password))  // md5 car par défaut un password est formaté avec ceci
@@ -108,7 +113,7 @@ if (isset($_POST['validation'])) {
 	         	}
 		    } 
 		}			    
-	    else{ echo "echec de la requête" . $request ; } 
+	    else{ echo "echec de la requête" . $requestLogin ; } 
 	}
 
 }
