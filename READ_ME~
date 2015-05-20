@@ -1,0 +1,34 @@
+Arborescence des fichiers
+
+index.php
+
+CONTROLLER / home.php , header.php , carroussel.php , articles.php ,
+livredor.php , formulairecontact.php , chat.php , googlemap.php , cv.php , footer.php , contact.php
+
+VIEWS / home.phtml , header.phtml , carroussel.phtml , articles.phtml ,
+livredor.phtml , formulairecontact.phtml , chat.phtml , googlemap.phtml , cv.phtml , footer.phtml , contact.phtml
+
+STYLES / style.css
+
+
+
+
+Arborescence des pages
+
+Home : header + carroussel + creation d'articles + footer
+Livre d'or : header + formulairelivredor + footer
+Contact : header + formulaire + chat + googlemap + footer
+CV : header + liste des liens illustré + footer
+
+Répartition des tâches :
+
+Nico (petit) : Header + Footer + création d'articles
+Nico (grand) : page CV + googlemap
+Alex 	     : CSS
+Fred         : structure globale + Caroussel + dossier image
+Patrick      : Formulaires
+
+Pour ajouter des liens vers d'autres pages voici la procédure à faire pour les href :
+href="index.php?page=X"
+avec X le nom de la page que vous souhaitez mettre en lien.
+Exemple : si vous souhaitez mettre un lien vers la page contact.phtml, il faudra écrire href="index.php?page=contact"
