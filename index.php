@@ -11,6 +11,15 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // $_GET['truc'] -> bidule
 // si $_GET['page'] = contact
 // charger le fichier apps/contact.php
+
+
+if(isset($_GET['logout']) && $_GET['logout']==1){
+	$_SESSION['id'] = $_SESSION['login'] = $_SESSION['auth'] = false;
+	unset($_SESSION['id']);
+	unset($_SESSION['login']);
+	unset($_SESSION['auth']);
+}
+
 $page = 'home';
 if (isset($_GET['page']))
 	$page = $_GET['page'];

@@ -26,17 +26,31 @@ function captcha()
     return $mot;
 }
 
+// si il est loggué on récupère son author_id, sinon on l'envoi sur la page de login
+$myAuthorId = "";
+if (isset($_SESSION["id"])) {
+//if (1 == 2) {
+    $myAuthorId = $_SESSION["id"];
+}
+
+// si pas loggué, on l'envoi sur la page de login
+else{
+    $redirection = true;
+    header('location: ' . './index.php?page=login&redirect=livredor');
+}
+
 /*** 2) initialisation des valeurs des champs ***/
 $login = "";
 $commentaire = "";
 $captcha = "";
+$table_name = "member";
+$redirection = false;
 if (isset($_POST['login'])) { $login = $_POST["login"];}
 if (isset($_POST['commentaire'])) { $commentaire = $_POST["commentaire"];}
 if (isset($_POST['captcha'])) { $captcha = $_POST["captcha"];}
 
-if (isset($_POST['validation'])) { // patpack. A rajouter sur register.php. regarder aussi la form action
+if (isset($_POST['validationLivredor'])) { // patpack. A rajouter sur register.php. regarder aussi la form action
                                     // mettre le session_start pour pouvoir tester le captcha
-
 
     /*** 3) vérification du formulaire ***/
 
@@ -79,7 +93,7 @@ if (isset($_POST['validation'])) { // patpack. A rajouter sur register.php. rega
         // vérif si le champs login ne contient que des lettres, chiffres, tiret, apostrophes et espaces
         if (isset($_POST['login'])) {
 
-            if (!preg_match("/^[A-Za-z0-9' -]{1,32}$/", $_POST['login'])) {
+            if (!preg_match("/^[A-Za-z0-9' -]{0,32}$/", $_POST['login'])) {
                 // ^ 1er caractère
                 // {,} repète 32 fois le test => test tous les caractères
                 // [] caractères facultatifs
@@ -108,7 +122,7 @@ if (isset($_POST['validation'])) { // patpack. A rajouter sur register.php. rega
     }
 
     // vérif 3 : le captcha est-il OK?
-/*    if ($champsOK == true) {
+    if ($champsOK == true) {
         if (isset($_POST['captcha'])) {
             if ($_POST['captcha'] !== $_SESSION['captcha']) {
                 $captchaOK = false;
@@ -122,36 +136,37 @@ if (isset($_POST['validation'])) { // patpack. A rajouter sur register.php. rega
     if ($captchaOK == false) {
         $champsOK = false;
     }
-*/
 
     /*** formattage 1 : trim et htmlspecialchars ***/
     if ($champsOK == true) {
 
-        $login = trim(htmlspecialchars($login));
-        $commentaire = trim(htmlspecialchars($commentaire));
+        $login = trim($login);
+        $commentaire = trim($commentaire);
 
-        echo "login2 : ". $login;
+        if ($champsOK == true)
+        {
 
-        // trim sert à supprimer les espaces à gauche et à droite
-        // html specialchars autorise les chevrons mais les inactives :
-        // => Transforme "<" en &lt; ">" en &gt; et "&" en &amp;
-        // on aurais pu aussi choisir strip_args qui vire ce qui est entre <>
+            /*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
+            $request = 'INSERT INTO guestbook(content, author_id, time)
+                VALUES('. $db->quote($commentaire) .',
+                       '. $db->quote($myAuthorId)       .',                
+                        NOW() )';
 
-        /*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
-        $request = 'INSERT INTO guestbook(content, author_id, time)
-            VALUES('. $db->quote($commentaire) .',
-                   '. $db->quote($login)       .',
-                    NOW() )';
-
-        $db->exec($request);
+            $db->exec($request);
+            echo "Merci pour vos remarques dans notre livre d'or";
+        }
     }
 
 }
 
-require('./views/livredor.phtml');
+if ($redirection == false) {
+    require('./views/livredor.phtml');
+}
 
 ?>
 <!--
+
+'. $db->quote($_SESSION["id"])       .', 
 
 /*** code pour tester BDD ***/
 foreach($_POST as $champ => $valeur) {  echo $champ . ": " . $valeur . "<br>";}

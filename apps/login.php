@@ -1,11 +1,8 @@
 <?php
 
-
 $table_name = "member";
 $next_program = $_SERVER['HTTP_REFERER'];
 $redirection = false; // patpack. récup le program d'origine avec un champ caché pour savoir ou l'envoyer
-
-
 
 $login = "";
 $password = "";
@@ -67,7 +64,7 @@ if (isset($_POST['validation'])) {
     if ($champsOK == true) { 
 
 		// recherche le login dans la table membre
-	    $requestLogin = "SELECT pseudo, password as mypassword FROM $table_name WHERE pseudo = '$login'";
+	    $requestLogin = "SELECT id as myid, pseudo, password as mypassword FROM $table_name WHERE pseudo = '$login'";
 	   
 	    // mettre le résultat de la requête dans une variable de façon à pouvoir compter le nombre de ligne 
 	    // => un login dois être unique
@@ -91,16 +88,26 @@ if (isset($_POST['validation'])) {
 	    		// ou un fetchall pour les avoir toutes	
     			$resultExploitable = $result->fetch();
     			$mypassword = $resultExploitable["mypassword"];
+    			$myid = $resultExploitable["myid"];
+    			//echo "$password : " .$password . "<br>";
+    			//echo "md5($password) : " .md5($password) . "<br>";
+    			//echo "$mypassword : " .$mypassword . "<br>";
 
    		        /*$requestPassword = "SELECT pseudo FROM $table_name WHERE pseudo = '$login' AND password = '$password' ";*/
 		        if ( $mypassword == md5($password))  // md5 car par défaut un password est formaté avec ceci
 		        {
 			       $_SESSION["auth"]= true;
 			       $_SESSION["login"] = $login;
-			      
-			        //header('location: ' . $next_program); // avant appel à du html patpack a voir
-			        $redirection = true;
-			        require('apps/livredor.php');
+			       $_SESSION["id"] = $myid;
+
+
+			       	if(isset($_POST['redirect'])){
+				        header('location: ?page=' . $_POST['redirect']); // avant appel à du html patpack a voir
+				        $redirection = true;
+			       		
+			       	}
+			        // echo "$next_program";
+			        //require('apps/livredor.php');
 		        }   
 		         else 
 	         	{
@@ -108,7 +115,7 @@ if (isset($_POST['validation'])) {
 	         	}
 		    } 
 		}			    
-	    else{ echo "echec de la requête" . $request ; } 
+	    else{ echo "echec de la requête" . $requestLogin ; } 
 	}
 
 }

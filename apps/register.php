@@ -211,7 +211,7 @@ if ($champsOK == true) {
 // pas besoin des htmlspecialchars en entrée, on préfère garder les choses tells que renseignées
     // plus tard, en lecture, on pourras choisir entre l'utiliser ou non. le mettre au niveau de l'input
     $login = trim($login);
-    $password = trim(sha1($password)); //permet de crypter le mdp
+    $password = trim(md5($password)); //permet de crypter le mdp
     $civility = trim($civility); 
     $firstname = trim($firstname);
     $lastname = trim($lastname); 
