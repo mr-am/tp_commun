@@ -67,6 +67,7 @@ else { $captcha = ""; }
 
 // booléen de vérif
 $champsOK = true;
+$captchaOK = true;
 
 $hidden = "";
 
@@ -90,9 +91,12 @@ $labels = array("login" => "login",
                 "phone" => "phone",                
                 "captcha" => "captcha");
 
-/*** verif 1 : champs vides ***/
+
+
+/*** verif 1 : champs vid
+es ***/
 foreach($_POST as $champ => $valeur) {
-     //echo $champ . ": " . $valeur . "<br>";
+     echo $champ . ": " . $valeur . "fin<br>";
 
     // vérification des champs vide
     // Tous les champs obligatoires vides alimenteront le tableau $tabVide
@@ -185,29 +189,37 @@ if ($champsOK == true)
 
 }
 
-/*** verif 3 : captcha ***/
-/*if ($champsOK == true) {
-    if (isset($_POST['captcha'])) {
-        if ($_POST['captcha'] !== $_SESSION['captcha']) {
-            $champsOK = false;
-            echo "captcha erroné<br>";
+    /*** verif 3 : captcha ***/
+    if ($champsOK == true) {
+        if (isset($_POST['captcha'])) {
+            if ($_POST['captcha'] !== $_SESSION['captcha']) {
+                $champsOK = false;
+                echo "captcha erroné<br>";
+                echo $_POST['captcha']."<br>";
+                echo $_SESSION['captcha']."<br>";
+            }
         }
     }
-}*/
+
+    if ($captchaOK == false) {
+        $champsOK = false;
+    }
 
 /*** formattage 1 : trim et htmlspecialchars ***/
 if ($champsOK == true) {
 
-    $login = trim(htmlspecialchars($login));
-    $password = trim(htmlspecialchars($password));
-    $civility = trim(htmlspecialchars($civility)); 
-    $firstname = trim(htmlspecialchars($firstname));
-    $lastname = trim(htmlspecialchars($lastname)); 
-    $street = trim(htmlspecialchars($street));
-    $zipcode = trim(htmlspecialchars($zipcode));
-    $city = trim(htmlspecialchars($city)); 
-    $country = trim(htmlspecialchars($country));
-    $phone = trim(htmlspecialchars($phone)); 
+// pas besoin des htmlspecialchars en entrée, on préfère garder les choses tells que renseignées
+    // plus tard, en lecture, on pourras choisir entre l'utiliser ou non. le mettre au niveau de l'input
+    $login = trim($login);
+    $password = trim(sha1($password)); //permet de crypter le mdp
+    $civility = trim($civility); 
+    $firstname = trim($firstname);
+    $lastname = trim($lastname); 
+    $street = trim($street);
+    $zipcode = trim($zipcode);
+    $city = trim($city); 
+    $country = trim($country);
+    $phone = trim($phone); 
 
 
 /*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
@@ -222,7 +234,7 @@ $request = 'INSERT INTO member(pseudo, password, civility, firstname, lastname, 
                    '. $db->quote($city)      .', 
                    '. $db->quote($country)   .', 
                    '. $db->quote($phone)     .', 
-                   '. NOW() .')';
+                    NOW() )';
 // faire un strtotime quand on récupère la donnée
 
 $db->exec($request);
@@ -247,6 +259,8 @@ $db->exec($request);
 // 3) le captcha
 // 4) les champs avec des espaces au début ou à la fin
 // 5) les champs non controlé avec des bizarreries
+// 6) tester longueur des champs
+// 7) page pour mettre à jour les données de la table des membres
 
 
 /***  insertion en base de données ***/
