@@ -1,166 +1,36 @@
-<?php
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-/* INTERDICTION ULTIME DE METTRE AUTANT DE PHP / INTELLIGENCE DANS UN FICHIER PHTML !!!! */
-if (isset($_POST['nom'])) {
-    $nom = $_POST["nom"];
-}
-else
-{
-    $nom = "";
-    session_start(); 
-}
+<h1>Vous trouvez notre site génial? dites-le nous</h1>
 
-if (isset($_POST['prenom'])) { $prenom = $_POST["prenom"]; }
-else { $prenom = ""; }
+<form action="index.php?page=livredor" method="post">
 
-if (isset($_POST['email'])) { $email = $_POST["email"]; }
-else { $email = ""; }
-
-if (isset($_POST['commentaire'])) { $commentaire = $_POST["commentaire"]; }
-else { $commentaire = ""; }
-
-if (isset($_POST['captcha'])) { $captcha = $_POST["captcha"]; }
-else { $captcha = ""; }
-
-/*if (isset($_POST['hidden'])) { $hidden = $_POST["hidden"]; }
-else { $hidden = ""; }*/
-    if (isset($_POST['validation']))
-    {
-        $hidden = "";
-        ?>
-        <script language="javascript">$("#hidden").show(); </script>
-        <?php
-    }
-else
-    {
-        ?>
-        <script language="javascript">$("#hidden").hide(); </script>
-        <?php
-    }
-
-
-
-foreach($_POST as $champ => $valeur) {  echo $champ . ": " . $valeur . "<br>";}
-
-$db = new PDO("mysql:dbname=tp_commun;host=127.0.0.1", 'root', 'troiswa');
-$requete = "SELECT guestbook.id, guestbook.title, guestbook.author_id, member.id, member.firstname, member.lastname 
-            FROM  guestbook, member 
-            where guestbook.author_id = member.id
-            and   guestbook.title = 'encore un titre'";
-//$requete = "SELECT 'article'.'id', 'article'.'title', 'article'.'content', 'article'.'author_id', 'member'.'id', 'member'.'name'
-//FROM article, member"// where 'article'.'author_id' =  'member'.'id';"
-
-$tab = $db->query($requete)->fetchAll(PDO::FETCH_ASSOC);
-var_dump($tab);
-
-
- ?>
-
-
-
-
-
-
-
-
-
-
-
-                <h1>Vous trouvez notre site génial? dites-le nous</h1> 
-
-            <form action="index.php?page=livredor" method="post">
-
-
-                <h2 class="Title">Identification</h2>
-
-                <div class="row">
-
-                <div class="col-md-6">
-                    <form action="../apps/verification.php" method="post" class="form-horizontal">
-                        <div class="form-group">
-                            <label for="champNom" class="col-sm-2 control-label">Nom : </label>
-                            <div class="col-sm-10">
-                                <input type="text" name="nom"  value="<?php echo $nom ?>" id="champNom" placeholder="Veuillez renseigner votre nom *" maxlength="37" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="champPrenom" class="col-sm-2 control-label">Prénom : </label>
-                            <div class="col-sm-10">
-                                <input type="text" name="prenom"  id="champPrenom" value="<?php echo $prenom ?>" placeholder="Veuillez renseigner votre prénom *" maxlength="37" class="form-control">
-                            </div>
-                         </div>
-                        <div class="form-group">
-                            <label for="champEmail" class="col-sm-2 control-label">Email : </label>
-                            <div class="col-sm-10">
-                                <input type="email" name="email"  value="<?php echo $email ?>" id="champEmail" maxlength="37" placeholder="Veuillez renseigner votre email *" class="form-control">
-                            </div>
-                         </div>
-
-                         <?php require('./apps/captcha.php'); ?>
-
-
-
-                        <div class="form-group">              
-                            <label for="captcha" class="col-sm-2 control-label">Recopiez le mot : "<?php echo captcha(); ?>"</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="captcha" id="captcha" value="<?php echo $captcha ?>" maxlength="37" class="form-control"/><br />
-                            </div>
-                        </div>
-                        <div class="form-group">              
-                            <label for="hidden" class="col-sm-2 control-label"></label>
-                            <div class="col-sm-10">
-                                <input type="text" id="hidden" name="hidden" visible = "false" value="<?php echo $hidden ?>" class="form-control"/><br />
-                            </div>
-                        </div>
-                    </form>    
+    <h2 class="Title">Identification</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="champLogin" class="col-sm-2 control-label">Login : </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="login"  value="<?php echo $login ?>" id="champLogin" placeholder=" *" maxlength="32" class="form-control">
+                    </div>
                 </div>
-
-                <div class="col-md-6">
-                    <form action="../apps/verification.php" method="post" class="form-horizontal">
-                        <h2 class="Title">Votre commentaire</h2>
-                        <div class="form-group">              
-                            <label for="champCom" class="col-sm-3 control-label">Commentaire : </label>
-                                <div class="col-sm-9">
-                                     <textarea name="commentaire" class="champCom" maxlength="300" placeholder="pas plus de 300 caractères" class="form-control" max-width="100%"><?php echo $commentaire ?></textarea>
-                                </div>
-                        </div>
-                        <button type="submit">Envoyer</button>
-                    </form>
+                <div class="form-group">
+                    <label for="captcha" class="col-sm-2 control-label">Recopiez le mot : "<?php echo captcha(); ?>"</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="captcha" id="captcha" value="<?php echo $captcha ?>" maxlength="32" class="form-control"/><br />
+                    </div>
                 </div>
+            </div>
 
+            <div class="col-md-6">
+                <h2 class="Title">Votre commentaire</h2>
+                <div class="form-group">
+                    <label for="champCom" class="col-sm-3 control-label">Commentaire : </label>
+                        <div class="col-sm-9">
+                             <textarea name="commentaire" class="champCom" maxlength="512" placeholder="pas plus de 512 caractères" class="form-control" max-width="100%"><?php echo $commentaire ?></textarea>
+                        </div>
+                </div>
+                <button type="submit" name="validation" >Envoyer</button>
+            </div>
+        </div>
+    </form>
 
- 
-
-
-
-
-
-
-
-<!--
-remarques :
-- maxlenght à 37 pour tous les champs de saisie (sauf textaerea à 300). taille de renseignement maximum :
-    on ne peux metre que 37 W. faudras être sur que cela marche pour tous les email
-- les champs nom, prénom ainsi que le commentaire est obligatoire. j'ai mis un required pour nom et prénom
-    pour le textarea, on gère cela dans le PHP
-
-
-
-
-
-
--->
 
 

@@ -1,8 +1,12 @@
 <?php
- session_start();
+ /*session_start();*/
+
+ 
 
 // booléen de vérif
 $champsOK = true;
+
+$hidden = "";
 
 // tableau des champs obligatoires vides
 $tabVide = array();
@@ -18,7 +22,7 @@ $labels = array("prenom" => "prenom",
                 "captcha" => "captcha");
 
 foreach($_POST as $champ => $valeur) {
-    // echo $champ . ": " . $valeur . "<br>";
+     //echo $champ . ": " . $valeur . "<br>";
 
     // vérification des champs vide
     // Tous les champs obligatoires vides alimenteront le tableau $tabVide
@@ -36,14 +40,24 @@ if(sizeof($tabVide) > 0) {
     foreach ($tabVide as $valeur2) {
         echo "{$labels[$valeur2]}<br>";
     }
+    $hidden = "tous les champs obligatoires n'ont pas &eacute;t&eacute saisie. veuillez saisir : ";
+    foreach ($tabVide as $valeur2) {
+        $hidden .= "{$labels[$valeur2]}, ";
+    }
     $champsOK = false;
+    //$hidden = "pasbien";
+
+   
+    // faire apparaitre le champ caché
+    require('views/livredor.phtml');
     // réafficher la page livreor.php
 }
-
 
 if ($champsOK == true) { // tous les champs obligatoires sont renseignés
     // vérif si le champs nom ne contient que des lettres, tiret, apostrophes et espaces
     if (isset($_POST['nom'])) {
+
+
         if (!preg_match("/^[A-Za-z' -]{1,37}$/", $_POST['nom'])) {
             // ^ 1er caractère
             // {,} repète 37 fois le test => test tous les caractères
@@ -76,6 +90,8 @@ if ($champsOK == true) { // tous les champs obligatoires sont renseignés
     }
 }
 
+
+
 if ($champsOK == true) {
     if (isset($_POST['captcha'])) {
         if ($_POST['captcha'] !== $_SESSION['captcha']) {
@@ -86,7 +102,13 @@ if ($champsOK == true) {
 }
 
 if ($champsOK == true) {
-        echo "tout est Ok, insertion en base de données";
+
+        echo "tout est Ok, insertion en base de données <br>";
+                foreach($_POST as $champ => $valeur) {
+         echo $champ . ": " . $valeur . "<br>";
+        }
+        //header("Location: ../views/livredor.phtml");
+        require('views/livredor.phtml'); 
         //echo "<meta http-equiv='refresh' content='0; url=livreor.php?nom=nom&prenom=prenom&email=email&commentaire=commentaire&captcha=captcha'>";
         // toutes les infos sont corrects
         // formattage pour mise en base :
