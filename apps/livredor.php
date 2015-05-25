@@ -1,4 +1,5 @@
 <?php
+/** Pascal : fonction en doublon avec _captcha.php et captcha.php **/
 
 /*** 1) gestion affichage captcha ***/
 function motHasard($n)
@@ -149,6 +150,8 @@ if (isset($_POST['validation'])) { // patpack. A rajouter sur register.php. rega
 }
 
 require('./views/livredor.phtml');
+
+/** Pascal : Le code ci après, "commenté", l'est certes... mais il reste envoyé au client, et donc là, théoriquement, on a accès à votre base de donnée en regardant le code source de la page html du livre d'or... **/
 
 ?>
 <!--

@@ -120,6 +120,7 @@ if ($champsOK == true) {
 
 }
 
+/** Pascal : Le commentaire qui suit est quand même envoyé a l'utilisateur, on a donc accès au code source de votre page, C'EST TRES TRES MAL ! **/
 ?>
 <!--
 

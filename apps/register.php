@@ -1,4 +1,5 @@
 <?php
+/** Pascal : fonction qui doublonne avec _captcha.php ET captcha.php, encore... **/
 
 function motHasard($n)
 {

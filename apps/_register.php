@@ -1,5 +1,7 @@
 <?php
 
+/** Pascal : doublon avec _register.php **/
+
 function motHasard($n)
 {
     $voyelles = array('a', 'e', 'i', 'o', 'u', 'ou', 'io','ou','ai');
