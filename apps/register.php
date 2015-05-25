@@ -27,6 +27,16 @@ function captcha()
 	    return $mot;
 	}
 
+// Gestion des droits. DEFINE ("nom", "valeur") donne une valeur à la constante nom. 
+define ('PUBLIER_ARTICLES',        0x01);
+define ('MODIFIER_ARTICLES',       0x02);
+define ('SUPPRIMER_ARTICLES',      0x04);
+define ('MODIFIER_TOUT_ARTICLES',  0x08);
+define ('SUPPRIMER_TOUT_ARTICLES', 0x10);
+define ('GERER_MEMBRES',           0x20);
+define ('GERER_DROITS',            0x40);
+
+
 /*** Initialisation des champs ***/
 if (isset($_POST['login'])) { $login = $_POST["login"]; }
 else { $login = ""; }
@@ -63,6 +73,8 @@ else { $phone = ""; }
 
 if (isset($_POST['captcha'])) { $captcha = $_POST["captcha"]; }
 else { $captcha = ""; }
+
+$groupes = "2"; // le groupe 1 correspond à un groupe utilisateur (une fois tout OK)
 
 // booléen de vérif
 $champsOK = true;
@@ -249,8 +261,36 @@ if ($champsOK == true) {
     if ($champsOK == true) {
 
 
+        /* juste avant l'insertion, gestion des droits
+
+        droits en base 2 | droits en (hexa) | nom de la constante          | ce qui ça veux dire          | encore plus clair
+                         |                  |                              |                              |
+        0000000000000001 | 00000*01         | 'PUBLIER_ARTICLE'            | publier ses articles         | publier et éditer ses propres articles
+        0000000000000010 | 00000*02         | 'MODIFIER_ARTCILE'           | modifier ses articles        | modifier ses propres articles
+        0000000000000100 | 00000*04         | 'SUPPRIMER_ARTICLE'          | supprimer ses articles       | supprimer ses propres articles
+        0000000000001000 | 00000*08         | 'MODIFIER_TOUT_ARTICLES'     | modifier tous les articles   | modifier les articles de qui ont veux
+        0000000000010000 | 00000*10         | 'SUPPRIMER_TOUT_ARTICLES'    | supprimer tous les articles  | supprimer les articles de qui ont veux
+        0000000000100000 | 00000*20         | 'GERER_MEMBRES'              | gerer les membres            | modifier olu supprimer un compte
+        0000000001000000 | 00000*40         | 'GERER_DROITS'               | gestion des droits           | super administrateur
+        0000000010000000 | 00000*80         |                              |                              |
+        0000000100000000 | 0000*100         |                              |                              |
+        0000001000000000 | 0000*200         |                              |                              |
+        0000010000000000 | 0000*400         |                              |                              |
+        0000100000000000 | 0000*800         |                              |                              |
+
+
+
+        define ('ECRIRE_ARTICLE', 0*01)
+
+        */
+
+
+
+
+
+
     /*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
-    $request = 'INSERT INTO member(pseudo, password, civility, firstname, lastname, email, street, zipcode, city, country, phone, time_register) 
+    $request = 'INSERT INTO member(pseudo, password, civility, firstname, lastname, email, street, zipcode, city, country, phone, groupes, time_register) 
                 VALUES('. $db->quote($login)     .', 
                        '. $db->quote($password)  .', 
                        '. $db->quote($civility)  .', 
@@ -262,6 +302,7 @@ if ($champsOK == true) {
                        '. $db->quote($city)      .', 
                        '. $db->quote($country)   .', 
                        '. $db->quote($phone)     .', 
+                       '. $db->quote($groupes)   .', 
                         NOW() )';
     // faire un strtotime quand on récupère la donnée
 
@@ -271,6 +312,8 @@ if ($champsOK == true) {
 
     }
 }
+
+
 
 /*$db->exec('INSERT INTO member(pseudo, password, civility, firstname, lastname, street, zipcode, city, country, phone, time_register) 
             VALUES("moioiuouy", 

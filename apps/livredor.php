@@ -41,6 +41,7 @@ else{
     header('location: ' . './index.php?page=login&redirect=livredor');
 }
 
+
 /*** 2) initialisation des valeurs des champs ***/
 $login = "";
 $commentaire = "";

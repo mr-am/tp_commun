@@ -1,0 +1,53 @@
+<p>Bienvenue dans la gestion des permissions.<br />
+Sur cette page, vous pouvez ajouter un groupe de permissions.<br />
+Pour cela, il vous suffit de remplir les cases ci-dessous.<br />
+</p>
+<form name="add_groupe" method="post">
+<label for="Nom">Nom du groupe : </label><input type="text" name="Nom" /><br />
+ 
+<label for="Add_article">Possibilité de publier un article : </label>
+    <select name="Add_article" id="Add_article">
+        <option value="add_article_oui">Oui</option>
+        <option value="add_article_non">Non</option>
+    </select><br />
+
+<label for="Mod_article">Possibilité de modifier un article : </label>
+    <select name="Mod_article" id="Mod_article">
+        <option value="mod_article_oui">Oui</option>
+        <option value="mod_article_non">Non</option>
+    </select><br />
+ 
+<label for="Del_article">Possibilité de supprimer un article :  </label>
+    <select name="Del_article" id="Del_article">
+        <option value="del_article_oui">Oui</option>
+            <option value="del_article_non">Non</option>
+    </select><br />
+
+<label for="Mod_all_article">Possibilité de modifier tous les articles : </label>
+    <select name="Mod_all_article" id="Mod_all_article">
+        <option value="mod_all_article_oui">Oui</option>
+        <option value="mod_all_article_non">Non</option>
+    </select><br />
+ 
+<label for="Del_all_article">Possibilité de supprimer tous les articles :  </label>
+    <select name="Del_all_article" id="Del_all_article">
+        <option value="del_all_article_oui">Oui</option>
+        <option value="del_all_article_non">Non</option>
+    </select><br /> 
+
+<label for="gerer_membre">Possibilité de gerer les membres : </label>
+    <select name="gerer_membre" id="gerer_membre">
+        <option value="gerer_membre_oui">Oui</option>
+        <option value="gerer_membre_non">Non</option>
+    </select><br />
+
+<label for="gerer_droits">Possibilité de gerer les droits : </label>
+    <select name="gerer_droits" id="gerer_droits">
+        <option value="gerer_droits_oui">Oui</option>
+        <option value="gerer_droits_non">Non</option>
+    </select><br />   
+
+<input type="text" name="description" placeholder"vous pouvez ajouter une description ici" id="champDescription" 
+value="<?php echo strip_tags($description) ?>" maxlength="255" >
+
+<input type="submit" name="creer_droits" value="Créer le groupe de permissions" /></form>

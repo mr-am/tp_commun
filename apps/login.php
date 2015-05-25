@@ -64,7 +64,10 @@ if (isset($_POST['validation'])) {
     if ($champsOK == true) { 
 
 		// recherche le login dans la table membre
-	    $requestLogin = "SELECT id as myid, pseudo, password as mypassword FROM $table_name WHERE pseudo = '$login'";
+	    /*$requestLogin = "SELECT *, id as myid, password as mypassword FROM $table_name WHERE pseudo = '$login'";
+        $select3 = "SELECT rights_group  as mesdroits FROM groupes WHERE id_group = '$groupes'";*/
+
+        $requestLogin = "SELECT *, id as myid, password as mypassword, rights_group as myrights_group FROM $table_name, groupes WHERE pseudo = '$login' and $table_name.groupes = groupes.id_group";
 	   
 	    // mettre le résultat de la requête dans une variable de façon à pouvoir compter le nombre de ligne 
 	    // => un login dois être unique
@@ -74,10 +77,10 @@ if (isset($_POST['validation'])) {
 	    	{ 
 	    		echo "login inexact"; 
 	    	}
-	    	else if ($result->rowCount() > 1) 
+	    	/*else if ($result->rowCount() > 1) 
 	    	{ 
 	    		echo "plusieurs login idendiques existent. Cas théorique impossible"; 
-	    	} 
+	    	} */
 
 	    	// si on trouve un seul enreg, on vérifie que le password correspond
 	    	else if ($result->rowCount() == 1) 
@@ -99,14 +102,13 @@ if (isset($_POST['validation'])) {
 			       $_SESSION["auth"]= true;
 			       $_SESSION["login"] = $login;
 			       $_SESSION["id"] = $myid;
+                   $_SESSION["droits"] = $resultExploitable["myrights_group"];
+                   //echo "<br>toto" . $_SESSION['droits'];
 
+				        /*header('location: ?page=' . $_GET['redirect']); // avant appel à du html patpack a voir */
 
-			       	/*if(isset($_GET['redirect'])){
-			       		echo "toto1";
-				        header('location: ?page=' . $_GET['redirect']); // avant appel à du html patpack a voir */
 				        $redirection2 = true;
-				        require('apps/livredor.php');
-				        
+				        require('apps/livredor.php');			        
 		       	}
 			        // echo "$next_program";
 			        //require('apps/livredor.php');
@@ -124,5 +126,60 @@ if (isset($_POST['validation'])) {
 if ($redirection2 == false) {
 	require('./views/login.phtml');
 }
+
+                    /*$droits = "";
+
+                    //recuperer les droits du groupe et comparer
+
+                            $select3 = "SELECT rights_group  as mesdroits FROM groupes WHERE id_group = '$groupes'";
+
+                            $result3 = $db->query($select3);
+
+                            $tab = $result3->fetch();
+
+                            if ($result3->rowCount()  == 0) 
+                            { 
+                                echo "osef";
+                            }
+                            elseif($result3->rowCount() == 1) {
+                                echo "OK";
+                                $droits = $tab['mesdroits'];
+
+                                on récupère $_SESSION["droits"];
+                                
+                              /*if ($droits & PUBLIER_ARTICLES)
+                                { echo 'DROITS PUBLIER_ARTICLES OK !' . $droits. '<br />'; }
+                              else 
+                                { echo 'DROITS PUBLIER_ARTICLES KO !' . $droits. '<br />'; }
+
+                              if ($droits & MODIFIER_ARTICLES)
+                                { echo 'DROITS MODIFIER_ARTCILES OK !' . $droits. '<br />'; }
+                              else 
+                                { echo 'DROITS MODIFIER_ARTCILES KO !' . $droits. '<br />'; }
+
+                              if ($droits & SUPPRIMER_ARTICLES)
+                                { echo 'DROITS SUPPRIMER_ARTICLES OK !' . $droits. '<br />'; }
+                              else 
+                                { echo 'DROITS SUPPRIMER_ARTICLES KO !' . $droits. '<br />'; }
+
+                              if ($droits & MODIFIER_TOUT_ARTICLES)
+                                { echo 'DROITS MODIFIER_TOUT_ARTICLES OK !' . $droits. '<br />'; }
+                              else 
+                                { echo 'DROITS MODIFIER_TOUT_ARTICLES KO !' . $droits. '<br />'; }
+
+                              if ($droits & SUPPRIMER_TOUT_ARTICLES)
+                                { echo 'DROITS SUPPRIMER_TOUT_ARTICLES OK !' . $droits. '<br />'; }
+                              else 
+                                { echo 'DROITS SUPPRIMER_TOUT_ARTICLES KO !' . $droits. '<br />'; }
+
+                              if ($droits & GERER_MEMBRES)
+                                { echo 'DROITS GERER_MEMBRES OK !' . $droits. '<br />'; }
+                              else 
+                                { echo 'DROITS GERER_MEMBRES KO !' . $droits. '<br />'; }
+
+                              if ($droits & GERER_DROITS)
+                                { echo 'DROITS GERER_DROITS OK !' . $droits. '<br />'; }
+                              else 
+                                { echo 'DROITS GERER_DROITS KO !' . $droits. '<br />'; }*/
 ?>
 

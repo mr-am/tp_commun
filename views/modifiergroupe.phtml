@@ -1,0 +1,53 @@
+  
+?><p>Vous pouvez modifier, si vous le souhaitez, les infos et permissions de ce groupe : </p><br />
+<form name="add_groupe" method="post" >
+<input type="hidden" name="id" value="<?php echo $_POST['id']; ?>" />
+
+<label for="Nom">Nom du groupe : </label><input type="text" name="Nom" value="<?php echo $donnees['nom']; ?>"/><br />
+
+<label for="Add_article">Possibilité d'ajouter un article : </label>
+    <select name="Add_article" id="Add_article">
+        <option value="add_article_oui" <?php if($selected_add_article == 1) echo 'selected="selected"'; ?>>Oui</option>
+        <option value="add_article_non" <?php if($selected_add_article == 0) echo 'selected="selected"'; ?>>Non</option>
+    </select><br />
+
+<label for="Mod_article">Possibilité de modifier un article : </label>
+    <select name="Mod_article" id="Mod_article">
+        <option value="mod_article_oui" <?php if($selected_mod_article == 1) echo 'selected="selected"'; ?>>Oui</option>
+        <option value="mod_article_non" <?php if($selected_mod_article == 0) echo 'selected="selected"'; ?>>Non</option>
+    </select><br />
+ 
+<label for="Del_article">Possibilité de supprimer un article :  </label>
+    <select name="Del_article" id="Del_article">
+        <option value="del_article_oui" <?php if($selected_del_article == 1) echo 'selected="selected"'; ?>>Oui</option>
+        <option value="del_article_non" <?php if($selected_del_article == 0) echo 'selected="selected"'; ?>>Non</option>
+    </select><br />
+
+<label for="Mod_all_article">Possibilité de modifier tous les articles : </label>
+    <select name="Mod_all_article" id="Mod_all_article">
+        <option value="mod_all_article_oui" <?php if($selected_mod_all_article == 1) echo 'selected="selected"'; ?>>Oui</option>
+        <option value="mod_all_article_non" <?php if($selected_mod_all_article == 0) echo 'selected="selected"'; ?>>Non</option>
+    </select><br />
+
+<label for="Del_all_article">Possibilité de supprimer tous les articles :  </label>
+    <select name="Del_all_article" id="Del_all_article">
+        <option value="del_all_article_oui" <?php if($selected_del_all_article == 1) echo 'selected="selected"'; ?>>Oui</option>
+        <option value="del_all_article_non" <?php if($selected_del_all_article == 0) echo 'selected="selected"'; ?>>Non</option>
+    </select><br /> 
+
+<label for="gerer_membre">Possibilité de gerer les membres : </label>
+    <select name="gerer_membre" id="gerer_membre">
+        <option value="gerer_membre_oui" <?php if($selected_gerer_membre == 1) echo 'selected="selected"'; ?>>Oui</option>
+        <option value="gerer_membre_non" <?php if($selected_gerer_membre == 0) echo 'selected="selected"'; ?>>Non</option>
+    </select><br />
+
+<label for="gerer_droits">Possibilité de gerer les droits : </label>
+    <select name="gerer_droits" id="gerer_droits">
+        <option value="gerer_droits_oui" <?php if($selected_gerer_droits == 1) echo 'selected="selected"'; ?>>Oui</option>
+        <option value="gerer_droits_non" <?php if($selected_gerer_droits == 0) echo 'selected="selected"'; ?>>Non</option>
+    </select><br /> 
+
+<input type="text" name="description" placeholder"vous pouvez ajouter une description ici" id="champDescription" 
+value="<?php echo strip_tags($description) ?>" maxlength="255" >
+
+<input type="submit" name="modifier_droits" value="Modifier le groupe de permissions !" /></form>
