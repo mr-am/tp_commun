@@ -97,3 +97,18 @@ body {
 .formconfig, .formregister {
     margin-bottom: 15px;
 }
+
+
+/*===================================
+    Messages correct et erreur
+=====================================*/
+
+.no {
+    color: red;
+    text-align: center;
+}
+
+.ok {
+    color: green;
+    text-align: center;
+}
