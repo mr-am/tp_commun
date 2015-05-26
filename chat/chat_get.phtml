@@ -1,0 +1,12 @@
+<!-- AJAX -->
+<script>
+	$('form').submit(function(info)
+	{
+		info.preventDefault();
+		$.get('chat_post.php',function(data)
+		{ 
+			$('#body').html(data);
+		});
+		return false;
+	});
+</script>

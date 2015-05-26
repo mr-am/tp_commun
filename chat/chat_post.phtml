@@ -1,0 +1,52 @@
+<?php
+	if (isset($_POST['message']))
+	{
+		echo($_POST['message']);
+		return;
+	}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mon chat</title>
+
+	<meta charset="UTF-8">
+	<meta name="description" content="Description de la page actuelle" />
+
+	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<link type="text/css" rel="stylesheet" href="reset.css">
+	<link type="text/css" rel="stylesheet" href="chat.css">
+	<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="./favicon.ico" />
+
+	<script src="jquery-2.1.3.min.js"></script>
+</head>
+<body>
+	<div class="wrapper_button">  
+        <a href="#" class="button">
+        	<img src="Icon_chat.png">
+        </a>
+    </div>
+	<div class="wrapper_content">
+		<div id="body"></div>
+		<form id="form" method="post" action="chat.php" enctype="multipart/form-data">
+			<input id="chat" type="text" name="chat" maxlength="512" autofocus require>
+		</form>
+		<?php require('chat.php') ?>
+		<!-- AJAX -->
+		<script>
+			$('#form').submit(function(info)
+			{
+				info.preventDefault();
+				$.post($(this).attr('action'), {"chat":$(this).find('#chat').val()}, function(data)
+				{
+					$('#body').html(data);
+				});
+				$('#chat').val('');
+				return false;
+			});
+		</script>
+	</div>
+<script src="chat.js"></script>
+</body>
+</html>
