@@ -11,24 +11,29 @@
 
 </div>
 
-<article class='col-md-12 jumbotron news'>
-	<h1><?=$tableau_res['title']?></h1>
-	<h2>Date de création :<?=$tableau_res['time_create']?></h2>
-	<p><?=$tableau_res['content']?></p>
-	<!--<? //if(isset($tableau_res['time_update']))
-	{
-		//echo "<h2>Date de modification : ".$tableau_res['time_update']."</h2>";
-	}
-	?>-->
-	<h2>Date de modification : <?=$tableau_res['time_update']?></h2>
-</article>
+
 
 <div class="row">
 	<div class="col-md-12">
-		<ul class="bxslider text-center carousel">
-		  <li><span>Article 1: Comment tailler un crayon sans en foutre partout ?</span><img src="style/img/pen.jpg" class="img-responsive" alt="Responsive image" /></li>
-		  <li><span>Article 2: Comment péchô une fille avec une belle voiture ?</span><img src="style/img/car1.jpg" /></li>
-		  <li><span>Article 3: Comment péchô quand on a plus de voiture ?</span><img src="style/img/car2.jpg" /></li>
+		<ul class="bxslider text-justify carousel">
+			<li>
+			  	<span><h1><?=$tableau_res[0]['title']?></h1></span>
+			  	<h2>Date de création :<?=$tableau_res[0]['time_create']?></h2>
+				<p><?=$tableau_res[0]['content']?></p>
+				<h2>Date de modification : <?=$tableau_res[0]['time_update']?></h2>
+			</li>
+			<li>
+				<span><?=$tableau_res[1]['title']?></span>
+				<h2>Date de création :<?=$tableau_res[1]['time_create']?></h2>
+				<p><?=$tableau_res[1]['content']?></p>
+				<h2>Date de modification : <?=$tableau_res[1]['time_update']?></h2>
+			</li>
+			<li>
+				<span><?=$tableau_res[2]['title']?></span>
+			  	<h2>Date de création :<?=$tableau_res[2]['time_create']?></h2>
+				<p><?=$tableau_res[2]['content']?></p>
+				<h2>Date de modification : <?=$tableau_res[2]['time_update']?></h2>
+			</li>
 		</ul>
 	</div>
 </div>
