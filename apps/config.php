@@ -118,36 +118,5 @@ else
 	require('./views/config.phtml');
 }
 
-  		/*
-  		if ($email!=$emailmodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>L'adresse email a été modifiée en ".$emailmodif." !</p></div>";  // message de validation
-		}
-
-		if ($phone!=$phonemodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>Le numéro de téléphone a été modifié en ".$phonemodif." !</p></div>"; // message de validation
-		}
-
-		if ($city!=$citymodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>La ville a été modifiée en ".$citymodif." !</p></div>"; // message de validation
-		}
-
-		if ($street!=$streetmodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>La rue a été modifiée en ".$streetmodif." !</p></div>"; // message de validation
-		}
-
-		if ($code_postal!=$zipmodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>Le code postal a été modifié en ".$zipmodif." !</p></div>"; // message de validation
-		}
-
-		if ($pays!=$paysmodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>Le pays a été modifié en ".$paysmodif." !</p></div>"; // message de validation
-		}
-		*/
 ?>
 
