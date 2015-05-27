@@ -11,25 +11,25 @@
                     <form action="../apps/verification.php" method="post" class="form-horizontal">
                         <!-- login (pseudo). Obligatoire -->
                         <div class="form-group">
-                            <label for="champLogin" class="col-sm-2 control-label">Login : </label>
+                            <label for="champLogin" class="col-sm-2 control-label formregister">Login : </label>
                             <div class="col-sm-10">
-                                <input type="text" name="login"  value="<?php echo strip_tags($login) ?>" id="champLogin" placeholder="*" maxlength="32" class="form-control">
+                                <input type="text" name="login"  value="<?php echo strip_tags($login) ?>" id="champLogin" placeholder="*" maxlength="32" class="form-control formregister">
                             </div>
                         </div>   
 
                         <!-- Password -->
                         <div class="form-group">
-                            <label for="champPassword" class="col-sm-2 control-label">Password : </label>
+                            <label for="champPassword" class="col-sm-2 control-label formregister">Password : </label>
                             <div class="col-sm-10">
-                                <input type="password" name="password"  id="champPassword" value="<?php echo strip_tags($password) ?>" placeholder="*" maxlength="32" class="form-control">
+                                <input type="password" name="password"  id="champPassword" value="<?php echo strip_tags($password) ?>" placeholder="*" maxlength="32" class="form-control formregister">
                             </div>
                          </div>
 
                         <!-- civilité -->  
                         <div class="form-group">
-                            <label for="civility" class="col-sm-2 control-label">Civilité : </label>
-                            <div class="col-sm-10">
-                                <input type="radio" name="civility" id="champMonsieurs" value="M"/>
+                            <label for="civility" class="col-sm-2 control-label formregister">Civilité : </label>
+                            <div class="col-sm-10 formregister">
+                                <input type="radio" name="civility" id="champMonsieurs" checked value="M"/>
                                 <label for="champMonsieurs">Monsieur</label>
                                 <input type="radio" name="civility" id="champMadame" value="Mme" />
                                 <label for="champMadame">Madame</label>
@@ -40,72 +40,72 @@
 
                         <!-- Nom -->
                         <div class="form-group">
-                            <label for="champFirstname" class="col-sm-2 control-label">Nom : </label>
+                            <label for="champFirstname" class="col-sm-2 control-label formregister">Nom : </label>
                             <div class="col-sm-10">
-                                <input type="text" name="firstname"  value="<?php echo strip_tags($firstname) ?>" id="champFirstname" placeholder="*" maxlength="32" class="form-control">
+                                <input type="text" name="firstname"  value="<?php echo strip_tags($firstname) ?>" id="champFirstname" placeholder="*" maxlength="32" class="form-control formregister">
                             </div>
                         </div>
                         
                         <!-- Prénom -->
                         <div class="form-group">
-                            <label for="lastName" class="col-sm-2 control-label">Prénom : </label>
+                            <label for="lastName" class="col-sm-2 control-label formregister">Prénom : </label>
                             <div class="col-sm-10">
-                                <input type="text" name="lastname"  id="champLastName" value="<?php echo strip_tags($lastname) ?>" placeholder="*" maxlength="32" class="form-control">
+                                <input type="text" name="lastname"  id="champLastName" value="<?php echo strip_tags($lastname) ?>" placeholder="*" maxlength="32" class="form-control formregister">
                             </div>
                          </div>
 
                         <!-- email -->                         
                         <div class="form-group">
-                            <label for="champEmail" class="col-sm-2 control-label">Email : </label>
+                            <label for="champEmail" class="col-sm-2 control-label formregister">Email : </label>
                             <div class="col-sm-10">
-                                <input type="email" name="email"  value="<?php echo strip_tags($email) ?>" id="champEmail" maxlength="64" placeholder="*" class="form-control">
+                                <input type="email" name="email"  value="<?php echo strip_tags($email) ?>" id="champEmail" maxlength="64" placeholder="*" class="form-control formregister">
                             </div>
                          </div>
 
                         <!-- street -->                         
                         <div class="form-group">
-                            <label for="champStreet" class="col-sm-2 control-label">rue : </label>
+                            <label for="champStreet" class="col-sm-2 control-label formregister">rue : </label>
                             <div class="col-sm-10">
-                                <input type="text" name="street"  value="<?php echo strip_tags($street) ?>" id="champStreet" maxlength="64" class="form-control">
+                                <input type="text" name="street"  value="<?php echo strip_tags($street) ?>" id="champStreet" maxlength="64" class="form-control formregister">
                             </div>
                          </div>
 
                         <!-- zipcode -->                         
                         <div class="form-group">
-                            <label for="champZipcode" class="col-sm-2 control-label">code postal : </label>
+                            <label for="champZipcode" class="col-sm-2 control-label formregister">code postal : </label>
                             <div class="col-sm-10">
-                                <input type="text" name="zipcode"  value="<?php echo strip_tags($zipcode) ?>" id="champZipcode" maxlength="16" class="form-control">
+                                <input type="text" name="zipcode"  value="<?php echo strip_tags($zipcode) ?>" id="champZipcode" maxlength="16" class="form-control formregister">
                             </div>
                          </div>
 
                         <!-- City -->
                         <div class="form-group">
-                            <label for="champCity" class="col-sm-2 control-label">ville : </label>
+                            <label for="champCity" class="col-sm-2 control-label formregister">ville : </label>
                             <div class="col-sm-10">
-                                <input type="text" name="city"  id="champCity" value="<?php echo strip_tags($city) ?>" maxlength="32" class="form-control">
+                                <input type="text" name="city"  id="champCity" value="<?php echo strip_tags($city) ?>" maxlength="32" class="form-control formregister">
                             </div>
                          </div>
 
                         <!-- Country -->
                         <div class="form-group">
-                            <label for="champCountry" class="col-sm-2 control-label">pays : </label>
+                            <label for="champCountry" class="col-sm-2 control-label formregister">pays : </label>
                             <div class="col-sm-10">
-                                <input type="text" name="country"  id="champCountry" value="<?php echo strip_tags($country) ?>" maxlength="32" class="form-control">
+                                <input type="text" name="country"  id="champCountry" value="<?php echo strip_tags($country) ?>" maxlength="32" class="form-control formregister">
                             </div>
                          </div>
 
                         <!-- phone -->                         
                         <div class="form-group">
-                            <label for="champPhone" class="col-sm-2 control-label">téléphone : </label>
+                            <label for="champPhone" class="col-sm-2 control-label formregister">téléphone : </label>
                             <div class="col-sm-10">
-                                <input type="text" name="phone"  value="<?php echo strip_tags($phone) ?>" id="champPhone" maxlength="16" class="form-control">
+                                <input type="text" name="phone"  value="<?php echo strip_tags($phone) ?>" id="champPhone" maxlength="16" class="form-control formregister">
                             </div>
                          </div>
 
                         <div class="form-group">              
-                            <label for="captcha" class="col-sm-2 control-label">Recopiez le mot : "<?php echo captcha(); ?>"</label>
+                            <label for="captcha" class="col-sm-2 control-label formregister">Recopiez le mot : "<?php echo captcha(); ?>"</label>
                             <div class="col-sm-10">
-                                <input type="text" name="captcha" id="captcha" value="<?php echo strip_tags($captcha) ?>" maxlength="6" class="form-control"/><br />
+                                <input type="text" name="captcha" id="captcha" value="<?php echo strip_tags($captcha) ?>" maxlength="6" class="form-control formregister"/><br />
                             </div>
                         </div>
 
