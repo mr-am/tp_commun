@@ -22,7 +22,6 @@ if (isset($_GET["id"]))
 	$pays = $utilisateur['country'];
 	$pass = $utilisateur['password'];
 
-	require('./views/config.phtml');
 
 
 	if (isset($_POST['validation']))
@@ -110,6 +109,19 @@ Modification du mot de passe
 		}
 	}
 
+	// Réactualisation des champs du formulaire
+	$sql = "SELECT * FROM member WHERE id='".$identifiant."'";
+	//exécution de la requête:
+	$utilisateur = $db->query($sql)->fetch();
+	$email = $utilisateur['email'];
+	$city = $utilisateur['city'];
+	$street = $utilisateur['street'];
+	$code_postal = $utilisateur['zipcode'];
+	$phone = $utilisateur['phone'];
+	$pays = $utilisateur['country'];
+	$pass = $utilisateur['password'];
+	require('./views/config.phtml');
+
 }
 
 else
@@ -117,6 +129,8 @@ else
 	echo "<p class='no'>L'identifiant en question n'existe pas !</p>";
 	require('./views/config.phtml');
 }
+
+
 
 ?>
 
