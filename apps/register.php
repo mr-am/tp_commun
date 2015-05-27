@@ -1,6 +1,6 @@
 <?php
 
-function motHasard($n)
+/*function motHasard($n)
 {
     $voyelles = array('a', 'e', 'i', 'o', 'u', 'ou', 'io','ou','ai');
     $consonnes = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm','n', 'p', 'r', 's', 't', 'v', 'w',
@@ -36,6 +36,7 @@ define ('SUPPRIMER_TOUT_ARTICLES', 0x10);
 define ('GERER_MEMBRES',           0x20);
 define ('GERER_DROITS',            0x40);
 
+*/
 
 /*** Initialisation des champs ***/
 if (isset($_POST['login'])) { $login = $_POST["login"]; }
@@ -106,7 +107,7 @@ $labels = array("login" => "login",
 
 /*** verif 1 : champs vides ***/
 foreach($_POST as $champ => $valeur) {
-     echo $champ . ": " . $valeur . "<br>";
+     //echo $champ . ": " . $valeur . "<br>";
 
     // vérification des champs vide
     // Tous les champs obligatoires vides alimenteront le tableau $tabVide
@@ -199,7 +200,7 @@ if ($champsOK == true)
 
 }
 
-    /*** verif 3 : captcha ***/
+    /*** verif 3 : captcha. voir si gerable autrement qu'en session ***/
     if ($champsOK == true) {
         if (isset($_POST['captcha'])) {
             if ($_POST['captcha'] !== $_SESSION['captcha']) {
@@ -238,7 +239,7 @@ if ($champsOK == true) {
     $country = trim($country);
     $phone = trim($phone); 
 
-/*** verif doublon ***/ 
+    /*** verif doublon ***/ 
 
     $request2 = "SELECT pseudo as mylogin FROM $table_name WHERE pseudo = '$login'";
 
@@ -267,22 +268,20 @@ if ($champsOK == true) {
 
         /* juste avant l'insertion, gestion des droits
 
-        droits en base 2 | droits en (hexa) | nom de la constante          | ce qui ça veux dire          | encore plus clair
-                         |                  |                              |                              |
-        0000000000000001 | 00000*01         | 'PUBLIER_ARTICLE'            | publier ses articles         | publier et éditer ses propres articles
-        0000000000000010 | 00000*02         | 'MODIFIER_ARTCILE'           | modifier ses articles        | modifier ses propres articles
-        0000000000000100 | 00000*04         | 'SUPPRIMER_ARTICLE'          | supprimer ses articles       | supprimer ses propres articles
-        0000000000001000 | 00000*08         | 'MODIFIER_TOUT_ARTICLES'     | modifier tous les articles   | modifier les articles de qui ont veux
-        0000000000010000 | 00000*10         | 'SUPPRIMER_TOUT_ARTICLES'    | supprimer tous les articles  | supprimer les articles de qui ont veux
-        0000000000100000 | 00000*20         | 'GERER_MEMBRES'              | gerer les membres            | modifier olu supprimer un compte
-        0000000001000000 | 00000*40         | 'GERER_DROITS'               | gestion des droits           | super administrateur
+        droits en base 2 | droits en (hexa) | nb qui s'additionne dans la base | nom de la constante     | explications
+                         |                  |                                  |  
+        0000000000000001 | 00000*01         |                                1 |'PUBLIER_ARTICLE'            |  publier et éditer ses propres articles
+        0000000000000010 | 00000*02         |                                2 |'MODIFIER_ARTCILE'           |  modifier ses propres articles
+        0000000000000100 | 00000*04         |                                4 |'SUPPRIMER_ARTICLE'          |  supprimer ses propres articles
+        0000000000001000 | 00000*08         |                                8 |'MODIFIER_TOUT_ARTICLES'     |  modifier les articles de qui ont veux
+        0000000000010000 | 00000*10         |                               16 |'SUPPRIMER_TOUT_ARTICLES'    |  supprimer les articles de qui ont veux
+        0000000000100000 | 00000*20         |                               32 |'GERER_MEMBRES'              |  modifier olu supprimer un compte
+        0000000001000000 | 00000*40         |                               64 |'GERER_DROITS'               |  gestion des droits, super administrateur
         0000000010000000 | 00000*80         |                              |                              |
         0000000100000000 | 0000*100         |                              |                              |
         0000001000000000 | 0000*200         |                              |                              |
         0000010000000000 | 0000*400         |                              |                              |
         0000100000000000 | 0000*800         |                              |                              |
-
-
 
         define ('ECRIRE_ARTICLE', 0*01)
 
@@ -312,11 +311,12 @@ if ($champsOK == true) {
 
     $db->exec($request);
 
+    // tester si false par acquis de conscience
+
     echo"vous avez bien été enregistré";
 
     }
 }
-
 
 
 /*$db->exec('INSERT INTO member(pseudo, password, civility, firstname, lastname, street, zipcode, city, country, phone, time_register) 
