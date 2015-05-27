@@ -1,5 +1,6 @@
 <?php
-$db = new PDO("mysql:dbname=tp_commun;host=127.0.0.1", 'root', 'troiswa');
+$db = new PDO("mysql:dbname=tp_commun;host=127.0.0.1;charset=utf8", 'root', 'troiswa');
+
 /** Pascal : Bien pour le dévelopemment, ne pas oublier de l'enlever lors de la mise en "live" **/
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  session_start();
