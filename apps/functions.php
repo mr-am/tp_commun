@@ -34,7 +34,7 @@ function limite($nb_max, $chaine)
 {
 $chaine = substr($chaine,0,$nb_max);
 $espace = strrpos($chaine," ");
-$chaine = substr($chaine,0,$espace)."...";
+$chaine = substr($chaine,0,$espace)." ...";
 return $chaine;
 }
 //___________________________

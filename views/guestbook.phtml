@@ -1,0 +1,35 @@
+<div class="row">
+
+	<div class="col-md-12"><?= $message ?>
+		<header class="page-header">
+			<h1>Comment list <small>Looking for a comment in the guestbook ?</small></h1>
+		</header>
+	</div>
+
+	<div class="col-md-12">
+		<h2>Publish a comment in the guestbook</h2>
+
+		<form method="post" action="index.php?page=guestbook" enctype="multipart/form-data">
+
+			<div class="form-group">
+				<label for="content">Content</label>
+				<textarea class="form-control" id="content" name="content"></textarea>
+			</div>
+			<button type="submit" name="action" value="publish_guestbook" class="btn btn-primary">Publish your comment</button>
+		</form>
+
+		<p id="pagination"><?= 'Go to page:'.implode("", pagination($pagin, $nbPage, 3, '?page=guestbook&amp;pagin='));?></p>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<th>Author</th>
+					<th>Updated</th>
+					<th>Commentaire</th>					
+				</thead>
+				<?php
+				displayLoop($select2);
+				?>
+			</table>
+		</div> 
+	</div>
+</div>
