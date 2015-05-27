@@ -10,8 +10,8 @@ $pays ='';
 
 if (isset($_GET["id"]))
 {
-	$identifiant  = $_GET["id"];
-	$sql = "SELECT * FROM member WHERE id='".intval($identifiant)."'";
+	$identifiant  = intval($_GET["id"]);
+	$sql = "SELECT * FROM member WHERE id='".$identifiant."'";
 	//exécution de la requête:
 	$utilisateur = $db->query($sql)->fetch();
 	$email = $utilisateur['email'];
@@ -28,12 +28,13 @@ if (isset($_GET["id"]))
 	if (isset($_POST['validation']))
 	{
 
-		$emailmodif = $_POST["formemail"] ; // l'email du formulaire devient la variable $email
-		$phonemodif = $_POST["formphone"] ; // l'email du formulaire devient la variable $email
-		$citymodif = $_POST["formcity"] ; // l'email du formulaire devient la variable $email
-		$streetmodif = $_POST["formstreet"] ; // l'email du formulaire devient la variable $email
-		$zipmodif = $_POST["formzip"] ; // l'email du formulaire devient la variable $email
-		$paysmodif = $_POST["formpays"] ;
+   		$phonemodif = $_POST["formphone"]; // le tél du formulaire devient la variable $phonemodif
+   	    $emailmodif = $_POST["formemail"] ; // l'email du formulaire devient la variable $emailmodif
+        $citymodif = $_POST["formcity"] ; // la ville du formulaire devient la variable $citymodif
+        $streetmodif = $_POST["formstreet"] ; // l'adresse du formulaire devient la variable $streetmodif
+        $zipmodif = $_POST["formzip"] ; // le code postale du formulaire devient la variable $zipmodif
+        $paysmodif = $_POST["formpays"] ; // le pays du formulaire devient la variable $paysmodif
+
 		// dans la table member, le champ email est remplacé par la variable $email où le champ id vaut la variable $identifiant
 		$sql = "UPDATE member SET email = '".$emailmodif."', phone = '".$phonemodif."', city = '".$citymodif."', street = '".$streetmodif."', zipcode = '".$zipmodif."', country = '".$paysmodif."'  WHERE id = '".$identifiant."' " ; 
 		//exécution de la requête SQL:
@@ -66,15 +67,12 @@ if (isset($_GET["id"]))
 			$tab_des_modifs[] = $paysmodif;
 		}
 
-		var_dump($tab_des_modifs);
-
 		$i=0;
 		while (isset($tab_des_modifs[$i]))
 		{
 			echo "<div class='col-md-12'><p class='ok'>".$tab_des_modifs[$i]." a été modifié dans vos informations personnelles !</p></div>";
 			$i++;
 		}
-
 	}
 
 
@@ -116,40 +114,9 @@ Modification du mot de passe
 
 else
 {
-	echo "<p>L'identifiant en question n'existe pas !</p>";
+	echo "<p class='no'>L'identifiant en question n'existe pas !</p>";
 	require('./views/config.phtml');
 }
 
-  		/*
-  		if ($email!=$emailmodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>L'adresse email a été modifiée en ".$emailmodif." !</p></div>";  // message de validation
-		}
-
-		if ($phone!=$phonemodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>Le numéro de téléphone a été modifié en ".$phonemodif." !</p></div>"; // message de validation
-		}
-
-		if ($city!=$citymodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>La ville a été modifiée en ".$citymodif." !</p></div>"; // message de validation
-		}
-
-		if ($street!=$streetmodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>La rue a été modifiée en ".$streetmodif." !</p></div>"; // message de validation
-		}
-
-		if ($code_postal!=$zipmodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>Le code postal a été modifié en ".$zipmodif." !</p></div>"; // message de validation
-		}
-
-		if ($pays!=$paysmodif)
-		{
-			echo "<div class='col-md-12'><p class='ok'>Le pays a été modifié en ".$paysmodif." !</p></div>"; // message de validation
-		}
-		*/
 ?>
 

@@ -8,7 +8,21 @@
 		  <p><a class="btn btn-primary btn-lg" href="https://github.com/mr-am" role="button">Contact us</a></p>
 		</header>
 	</div>
+
 </div>
+
+<article class='col-md-12 jumbotron news'>
+	<h1><?=$tableau_res['title']?></h1>
+	<h2>Date de création :<?=$tableau_res['time_create']?></h2>
+	<p><?=$tableau_res['content']?></p>
+	<!--<? //if(isset($tableau_res['time_update']))
+	{
+		//echo "<h2>Date de modification : ".$tableau_res['time_update']."</h2>";
+	}
+	?>-->
+	<h2>Date de modification : <?=$tableau_res['time_update']?></h2>
+</article>
+
 <div class="row">
 	<div class="col-md-12">
 		<ul class="bxslider text-center carousel">
