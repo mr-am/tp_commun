@@ -92,23 +92,25 @@ if (isset($_POST['validation'])) {
     			$resultExploitable = $result->fetch();
     			$mypassword = $resultExploitable["mypassword"];
     			$myid = $resultExploitable["myid"];
-    			//echo "$password : " .$password . "<br>";
-    			//echo "md5($password) : " .md5($password) . "<br>";
-    			//echo "$mypassword : " .$mypassword . "<br>";
+                $password = trim($password);
+    			//echo "<br>$mypassword (base): " .$mypassword . "<br>";
+                //echo "$password (entrée): " .$password . "<br>";
+
 
    		        /*$requestPassword = "SELECT pseudo FROM $table_name WHERE pseudo = '$login' AND password = '$password' ";*/
-		        if ( $mypassword == md5($password))  // md5 car par défaut un password est formaté avec ceci
+		        //if ( $mypassword == md5($password))  // md5 car par défaut un password est formaté avec ceci
+                // patpack securité. le password_verify Vérifie qu'un mot de passe correspond à une table de hachage
+                // => pas besoin de hasher le mot de passe rentré avant vérification
+                if (password_verify($password, $mypassword))
 		        {
 			       $_SESSION["auth"]= true;
 			       $_SESSION["login"] = $login;
 			       $_SESSION["id"] = $myid;
                    $_SESSION["droits"] = $resultExploitable["myrights_group"];
-                   //echo "<br>toto" . $_SESSION['droits'];
+                   echo 'Le mot de passe est valide !';
 
-				        /*header('location: ?page=' . $_GET['redirect']); // avant appel à du html patpack a voir */
-
-				        $redirection2 = true;
-				        require('apps/livredor.php');			        
+				        //$redirection2 = true; // 2 lignes OK, à remettre à la fin des tests
+				        //require('apps/livredor.php');			        
 		       	}
 			        // echo "$next_program";
 			        //require('apps/livredor.php');
@@ -147,39 +149,11 @@ if ($redirection2 == false) {
 
                                 on récupère $_SESSION["droits"];
                                 
-                              /*if ($droits & PUBLIER_ARTICLES)
-                                { echo 'DROITS PUBLIER_ARTICLES OK !' . $droits. '<br />'; }
-                              else 
-                                { echo 'DROITS PUBLIER_ARTICLES KO !' . $droits. '<br />'; }
-
-                              if ($droits & MODIFIER_ARTICLES)
-                                { echo 'DROITS MODIFIER_ARTCILES OK !' . $droits. '<br />'; }
-                              else 
-                                { echo 'DROITS MODIFIER_ARTCILES KO !' . $droits. '<br />'; }
-
-                              if ($droits & SUPPRIMER_ARTICLES)
-                                { echo 'DROITS SUPPRIMER_ARTICLES OK !' . $droits. '<br />'; }
-                              else 
-                                { echo 'DROITS SUPPRIMER_ARTICLES KO !' . $droits. '<br />'; }
-
-                              if ($droits & MODIFIER_TOUT_ARTICLES)
-                                { echo 'DROITS MODIFIER_TOUT_ARTICLES OK !' . $droits. '<br />'; }
-                              else 
-                                { echo 'DROITS MODIFIER_TOUT_ARTICLES KO !' . $droits. '<br />'; }
-
-                              if ($droits & SUPPRIMER_TOUT_ARTICLES)
-                                { echo 'DROITS SUPPRIMER_TOUT_ARTICLES OK !' . $droits. '<br />'; }
-                              else 
-                                { echo 'DROITS SUPPRIMER_TOUT_ARTICLES KO !' . $droits. '<br />'; }
-
-                              if ($droits & GERER_MEMBRES)
-                                { echo 'DROITS GERER_MEMBRES OK !' . $droits. '<br />'; }
-                              else 
-                                { echo 'DROITS GERER_MEMBRES KO !' . $droits. '<br />'; }
-
-                              if ($droits & GERER_DROITS)
-                                { echo 'DROITS GERER_DROITS OK !' . $droits. '<br />'; }
-                              else 
-                                { echo 'DROITS GERER_DROITS KO !' . $droits. '<br />'; }*/
+                            /*
+                            if ($droits & PUBLIER_ARTICLES)
+                              { echo 'DROITS PUBLIER_ARTICLES OK !' . $droits. '<br />'; }
+                            else 
+                              { echo 'DROITS PUBLIER_ARTICLES KO !' . $droits. '<br />'; }
+                            */
 ?>
 

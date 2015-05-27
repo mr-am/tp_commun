@@ -104,8 +104,7 @@ $labels = array("login" => "login",
                 "phone" => "phone",                
                 "captcha" => "captcha");
 
-/*** verif 1 : champs vid
-es ***/
+/*** verif 1 : champs vides ***/
 foreach($_POST as $champ => $valeur) {
      echo $champ . ": " . $valeur . "<br>";
 
@@ -224,7 +223,12 @@ if ($champsOK == true) {
 // pas besoin des htmlspecialchars en entrée, on préfère garder les choses tells que renseignées
     // plus tard, en lecture, on pourras choisir entre l'utiliser ou non. le mettre au niveau de l'input
     $login = trim($login);
-    $password = trim(md5($password)); //permet de crypter le mdp
+    //$password = trim(md5($password)); //permet de crypter le mdp
+
+    //patpack remplacement pour raison de sécurité par un password_hash
+    $password = trim($password);
+    $password = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
+
     $civility = trim($civility); 
     $firstname = trim($firstname);
     $lastname = trim($lastname); 

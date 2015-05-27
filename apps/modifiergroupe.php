@@ -45,38 +45,43 @@ if(!isset($_REQUEST['id'])) // Si on n'a pas choisi le groupe à modifier
         echo '</ul>';
 }
 
-//elseif(!isset($_POST['id'])) // Si le formulaire n'est pas posté
+//elseif(!isset($_POST['id'])) // Si le formulaire n'est pas posté // patpack à voir
 elseif(!isset($_POST['Nom'])) 
 {
+        $select4 = 'SELECT * FROM groupes WHERE name = $nom[1]'; // On sélectionne les infos
+
+        $result4 = $db->query($select4);
+
+        $donnees34= $result4->fetch();
 
     foreach ($_POST as $field => $value) { echo "$field = $value<br />\n";}
 
-        $donnees = $donnees[0]; // récupération de la 1ère ligne
-        if ((int)$donnees['rights_group'] & PUBLIER_ARTICLES) 
+        //$donnees = $donnees[0]; // récupération de la 1ère ligne
+        if ((int)$donnees4['rights_group'] & PUBLIER_ARTICLES) 
           { $selected_add_article = 1; }
         else { $selected_add_article = 0; }
 
-        if ((int)$donnees['rights_group'] & MODIFIER_ARTICLES) 
+        if ((int)$donnees4['rights_group'] & MODIFIER_ARTICLES) 
           { $selected_mod_article = 1; }
         else { $selected_mod_article = 0; }
 
-        if ((int)$donnees['rights_group'] & SUPPRIMER_ARTICLES) 
+        if ((int)$donnees4['rights_group'] & SUPPRIMER_ARTICLES) 
           { $selected_del_article = 1; }
         else { $selected_del_article = 0; }
 
-        if ((int)$donnees['rights_group'] & MODIFIER_TOUT_ARTICLES) 
+        if ((int)$donnees4['rights_group'] & MODIFIER_TOUT_ARTICLES) 
           { $selected_mod_all_article = 1; }
         else { $selected_mod_all_article = 0; }
 
-        if ((int)$donnees['rights_group'] & SUPPRIMER_TOUT_ARTICLES) 
+        if ((int)$donnees4['rights_group'] & SUPPRIMER_TOUT_ARTICLES) 
           { $selected_del_all_article = 1; }
         else { $selected_del_all_article = 0; }
 
-        if ((int)$donnees['rights_group'] & GERER_MEMBRES) 
+        if ((int)$donnees4['rights_group'] & GERER_MEMBRES) 
           { $selected_gerer_membre = 1; }
         else { $selected_gerer_membre = 0; }
 
-        if ((int)$donnees['rights_group'] & GERER_DROITS) 
+        if ((int)$donnees4['rights_group'] & GERER_DROITS) 
           { $selected_gerer_droits = 1; }
         else { $selected_gerer_droits = 0; }
 

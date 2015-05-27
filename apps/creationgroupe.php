@@ -1,10 +1,5 @@
 <?php 
 
-//inutile car fait dans index.php
-//session_start(); 
-//mysql_connect('localhost', 'root', ''); 
-//mysql_select_db('tuto_perm');
-
 // Gestion des droits. DEFINE ("nom", "valeur") donne une valeur à la constante nom. 
 define ('PUBLIER_ARTICLES',         0x01);
 define ('MODIFIER_ARTICLES',        0x02);
@@ -17,8 +12,6 @@ define ('GERER_DROITS',             0x40);
 $table_name = "groupes";
 
 //define ('ECRIRE_ARTICLE', 0x01); // Nous définissons les constantes de droits
-//define ('SUPPRIMER_ARTICLE', 0x02); // Une constante = un droit
-//define ('MODIFIER_ARTICLE', 0x08); // Pour savoir à quoi correspondent les valeurs des constantes, allez ici : http://www.siteduzero.com/tuto-3-6518-1-introduction-aux-operateurs-de-bits.html#ss_part_6
 $description = "";
 $droits = "";
 $nom = "";
@@ -72,36 +65,30 @@ if(isset($_POST['Nom'])) // Si le formulaire a été validé, on peut effectuer 
         $droits      = decbin($droits);
         $description = trim($description);
         var_dump($droits);
-        $longueur = strlen($droits);
 
-        while($longueur < 7)
-        {
-          $droits = "0".$droits;
-          $longueur++;
-        }
-        var_dump($droits);
  
         /*$request = 'INSERT INTO group(nom, description, rights_group) 
                     VALUES ('.$nom.'", "'.$droits.'", "'.@$description.'")'; */
 
 
-                    /*patpack onpeux afficher dans la base en geranr attribut binary dans la base de données 
-                    il existe un moyen de transformer un nombre en nombre binaire
-                    on peux décaler n'importe quel nombre, quel que soit le format*/
+        /* 2 façons de gerer ces bits
+        - mettre les données dans la base sous forme de bit (0100...) en précisant dans la table qu'on stocke du binary
+        - stocker en tant que int (comme d'habitude) en le précisant à la base. Pas de diificulté pour gerer derrière
+        patpack on peux afficher dans la base en gerant attribut binary dans la base de données 
+        il existe un moyen de transformer un nombre en nombre binaire (decbin)
+        on peux décaler n'importe quel nombre, quel que soit le format*/
                     
-
         echo "nom : ". $nom . " droits : " . $droits . "description : " . $description;
 
-
-$request5 = 'INSERT INTO groupes (name, description, rights_group) VALUES ('.$db->quote($nom).','. $db->quote($description).','.$db->quote(@$droits).')';
+        $request5 = 'INSERT INTO groupes (name, description, rights_group) 
+                     VALUES ('.$db->quote($nom).','. $db->quote($description).','.$db->quote(@$droits).')';
         $db->exec($request5);
-                   //            '. $db->quote($phone)     .', 
-                   //     NOW() )';
-
+        // '. $db->quote($phone)     .', 
+        // NOW() )';
         //$_SESSION['droits'] = $droits;
 
-    /*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
-    /*$request = 'INSERT INTO member(pseudo, password, civility, firstname, lastname, email, street, zipcode, city, country, phone, time_register) 
+        /*** formattage 2 : insertion avec pdo::quote qui vas gérer les quotes qui peuvent trainer ***/
+        /*$request = 'INSERT INTO member(pseudo, password, civility, firstname, lastname, email, street, zipcode, city, country, phone, time_register) 
                 VALUES('. $db->quote($login)     .', 
                        '. $db->quote($password)  .', 
                        '. $db->quote($civility)  .', 
@@ -114,18 +101,6 @@ $request5 = 'INSERT INTO groupes (name, description, rights_group) VALUES ('.$db
                        '. $db->quote($country)   .', 
                        '. $db->quote($phone)     .', 
                         NOW() )';*/
-
-
-
-
-
-
-
-
-
-
-
-
 
         /* voir si il faut vérifier que la requête a bien été exécutée*/
 }
