@@ -69,7 +69,7 @@
 		foreach ($select2 as $row)
 		{
 			echo '<tr>
-			<td><a href="index.php?page=article-view&amp;id='.$row['id'].'">'.strip_tags($row['title']).'</a></td>
+			<td><a href="index.php?page=article-view&amp;id='.$row['id'].'">'.$row['title'].'</a></td>
 			<td>'.$row['pseudo'].'</td>
 			<td>'.$row['create'].'</td>
 			<td>'.$row['update'].'</td>

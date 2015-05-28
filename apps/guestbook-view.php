@@ -5,7 +5,7 @@
 	{
 
 		$keepTags = '<h1><h2><h3><h4><h5><h6><p><ul><ol><li><strong><em><br>';
-		$content = strip_tags($row['content'],$keepTags);
+		$content = $row['content'],$keepTags;
 		$author_id = $row['author_id'];
 		$create = systeme_date(strtotime($row['time']));
 	}

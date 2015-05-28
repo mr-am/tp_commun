@@ -5,10 +5,10 @@
 			</header>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?= 'Created by '.$author_id.' - '.$create ?></h3>
+					<h3 class="panel-title"><?= 'Created by '. strip_tags($author_id).' - '. strip_tags($create) ?></h3>
 				</div>
 				<div class="panel-body">
-					<textarea class="panel-textarea" name="panel-textarea" rows="5" readonly><?= $content ?></textarea>
+					<textarea class="panel-textarea" name="panel-textarea" rows="5" readonly><?= strip_tags($content) ?></textarea>
 				</div>
 			</div>
 		</article>

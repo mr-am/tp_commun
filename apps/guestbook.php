@@ -61,7 +61,7 @@
 		}
 		foreach ($select2 as $row)
 		{
-			echo '<tr><td><a href="index.php?page=guestbook-view&amp;id='.$row['id'].'">'.strip_tags($row['pseudo']).'</a></td><td>'.$row['create'] .'</td>';
+			echo '<tr><td><a href="index.php?page=guestbook-view&amp;id='.$row['id'].'">'.$row['pseudo'].'</a></td><td>'.$row['create'] .'</td>';
 			if (strlen($row['content'])> 50)
 			{   
 				$row['content'] = limite(50, $row['content']);
