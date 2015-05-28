@@ -1,7 +1,16 @@
-<div class="carroussel">
-    <ul class="sliderTop">
-        <li><img src="style/img/slider1.jpg" alt="" /></li>
-        <li><img src="style/img/slider2.jpg" alt="" /></li>
-        <li><img src="style/img/slider3.jpg" alt="" /></li>
-    </ul>
-</div>
+<li>
+	<div class="news jumbotron">
+	  	<h1><?=$tableau_res[$i]['title']?></h1>
+	  	<?php 
+	  	if ($tableau_res[$i]['time_create']!='0000-00-00 00:00:00') {
+	  		echo "<h2>Date de création :".$tableau_res[$i]['time_create']."</h2>" ;
+	  	}
+	  	?>
+		<p><?=$tableau_res[$i]['content']?></p>
+		<?php 
+	  	if ($tableau_res[$i]['time_update']!='0000-00-00 00:00:00') {
+	  		echo "<h2>Date de modification :".$tableau_res[$i]['time_update']."</h2>" ;
+	  	}
+	  	?>
+	</div>
+</li>
