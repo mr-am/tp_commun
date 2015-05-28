@@ -1,3 +1,3 @@
 <?php
-require('../views/cine/Odyssee.phtml');
+require('views/cine/Odyssee.phtml');
 ?>

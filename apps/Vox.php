@@ -1,3 +1,3 @@
 <?php
-require('../views/cine/Vox.phtml');
+require('views/cine/Vox.phtml');
 ?>

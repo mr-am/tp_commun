@@ -1,3 +1,3 @@
 <?php
-require('../views/cine/Ugc.phtml');
+require('views/cine/Ugc.phtml');
 ?>

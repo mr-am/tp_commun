@@ -1,3 +1,3 @@
 <?php
-require('../views/cine/Star.phtml');
+require('views/cine/Star.phtml');
 ?>

@@ -1,5 +1,6 @@
 body {
 	padding-top: 70px;
+    padding-bottom: 203px
 }
 
 
@@ -88,7 +89,12 @@ body {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: white;
+    background: rgba(180,180,180,1);
+}
+
+.navbar-collapse ul li a:hover:before
+{
+    background: rgba(255,255,255,1);
 }
 
 
@@ -120,6 +126,7 @@ body {
 /*==============================
 			FOOTER
 ==============================*/
+
 .social-list{
     margin-top: 20px;
 }
@@ -174,9 +181,14 @@ body {
 
 .footer {
 	background-color: #222222;
-	margin-top: 50px;
-	padding: 50px 0;
+	padding: 10px 0 50px 0;
 	color: #E3E3E3;
+    width:100%;
+    position:fixed;
+    bottom:0px;
+    center:0;
+    margin-top: 203px;
+
 }
 
 .footer h4 {
@@ -302,20 +314,3 @@ body {
     text-align: center;
 }
 
-/*===================================
-    Messages correct et erreur
-=====================================*/
-
-.news {
-    text-align: justify;
-    margin-top: 30px;
-    background: ;
-}
-
-.news h2{
-    margin-left: 0;
-    padding: 0;
-    width: 100%;
-    text-align: left;
-    font-size: 8px;
-}
