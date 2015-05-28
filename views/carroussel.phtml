@@ -1,8 +1,16 @@
 <li>
 	<div class="news jumbotron">
 	  	<h1><?=$tableau_res[$i]['title']?></h1>
-	  	<h2>Date de création :<?=$tableau_res[$i]['time_create']?></h2>
+	  	<?php 
+	  	if ($tableau_res[$i]['time_create']!='0000-00-00 00:00:00') {
+	  		echo "<h2>Date de création :".$tableau_res[$i]['time_create']."</h2>" ;
+	  	}
+	  	?>
 		<p><?=$tableau_res[$i]['content']?></p>
-		<h2>Date de modification : <?=$tableau_res[$i]['time_update']?></h2>
+		<?php 
+	  	if ($tableau_res[$i]['time_update']!='0000-00-00 00:00:00') {
+	  		echo "<h2>Date de modification :".$tableau_res[$i]['time_update']."</h2>" ;
+	  	}
+	  	?>
 	</div>
 </li>
